@@ -12,7 +12,7 @@
         <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/darcula.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/purebasic.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -605,25 +605,25 @@
                 <div class="col-md-9" role="main">
 
 <h2 id="increase-log-size-to-support-increased-auditing">Increase Log size to support increased auditing:<a class="headerlink" href="#increase-log-size-to-support-increased-auditing" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; reg add HKLM\Software\Policies\Microsoft\Windows\Eventlog\Application /v MaxSize /t REG_DWORD /d 0x19000
+<pre><code>C:\&gt; reg add HKLM\Software\Policies\Microsoft\Windows\Eventlog\Application /v MaxSize /t REG_DWORD /d 0x19000
 C:\&gt; reg add HKLM\Software\Policies\Microsoft\Windows\Eventlog\Security /v MaxSize /t REG_DWORD /d 0x64000
 C:\&gt; reg add HKLM\Software\Policies\Microsoft\Windows\EventLog\System /v MaxSize /t REG_DWORD /d 0x19000
-</pre></div>
+</code></pre>
 
 <h2 id="check-settings-of-security-log">Check settings of Security log:<a class="headerlink" href="#check-settings-of-security-log" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; wevtutil gl Security
-</pre></div>
+<pre><code>C:\&gt; wevtutil gl Security
+</code></pre>
 
 <h2 id="check-settings-of-audit-policies">Check settings of audit policies:<a class="headerlink" href="#check-settings-of-audit-policies" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; auditpol /get /category:*
-</pre></div>
+<pre><code>C:\&gt; auditpol /get /category:*
+</code></pre>
 
 <h2 id="set-log-auditing-on-for-success-andor-failure-on-all-categories">Set Log Auditing on for Success and/or Failure on All Categories:<a class="headerlink" href="#set-log-auditing-on-for-success-andor-failure-on-all-categories" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; auditpol /set /category:* /success:enable /failure:enable
-</pre></div>
+<pre><code>C:\&gt; auditpol /set /category:* /success:enable /failure:enable
+</code></pre>
 
 <h2 id="set-log-auditing-on-for-success-andor-failure-on-subcategories">Set Log Auditing on for Success and/or Failure on Subcategories:<a class="headerlink" href="#set-log-auditing-on-for-success-andor-failure-on-subcategories" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; auditpol /set /subcategory: &quot;Detailed FileShare&quot; /success:enable /failure:enable
+<pre><code>C:\&gt; auditpol /set /subcategory: &quot;Detailed FileShare&quot; /success:enable /failure:enable
 C:\&gt; auditpol /set /subcategory:&quot;File System&quot;/success:enable /failure:enable
 C:\&gt; auditpol /set /subcategory:&quot;Security System Extension&quot; /success:enable /failure:enable
 C:\&gt; auditpol /set /subcategory:&quot;System Integrity&quot;/success:enable /failure:enable
@@ -672,85 +672,85 @@ C:\&gt; auditpol /set /subcategory:&quot;Kerberos Service Ticket Operations&quot
 C:\&gt; auditpol /set /subcategory:&quot;Other Account Logan Events&quot; /success:enable /failure:enable
 C:\&gt; audit pol /set /subcategory: &quot;Kerberos Authentication Service&quot; /success:enable /failure:enable
 C:\&gt; auditpol /set /subcategory:&quot;Credential Validation&quot; /success:enable /failure:enable
-</pre></div>
+</code></pre>
 
 <h2 id="check-for-list-of-available-logs-size-retention-limit">Check for list of available logs, size, retention limit:<a class="headerlink" href="#check-for-list-of-available-logs-size-retention-limit" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>PS C:\&gt; Get-Eventlog -list
-</pre></div>
+<pre><code>PS C:\&gt; Get-Eventlog -list
+</code></pre>
 
 <h2 id="partial-list-of-key-security-log-auditing-events-to-monitor">Partial list of Key Security Log Auditing events to monitor:<a class="headerlink" href="#partial-list-of-key-security-log-auditing-events-to-monitor" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>PS C:\&gt; Get-Eventlog -newest 5 -logname applicationI Format-List
-</pre></div>
+<pre><code>PS C:\&gt; Get-Eventlog -newest 5 -logname applicationI Format-List
+</code></pre>
 
 <h2 id="show-log-from-remote-system">Show log from remote system:<a class="headerlink" href="#show-log-from-remote-system" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><span class="nt">PS</span> <span class="nt">C</span><span class="o">:</span><span class="err">\</span><span class="o">&gt;</span> <span class="nt">Show-Eventlog</span> <span class="nt">-computername</span> <span class="o">&lt;</span><span class="nt">SERVER</span> <span class="nt">NAME</span><span class="o">&gt;</span><span class="nt">Get</span> <span class="nt">a</span> <span class="nt">specific</span> <span class="nt">list</span> <span class="nt">of</span> <span class="nt">events</span> <span class="nt">based</span> <span class="nt">on</span> <span class="nt">Event</span> <span class="nt">ID</span><span class="o">:</span>
-<span class="nt">PS</span> <span class="nt">C</span><span class="o">:</span><span class="err">\</span><span class="o">&gt;</span> <span class="nt">Get-Eventlog</span> <span class="nt">Security</span> <span class="nt">I</span> <span class="o">?</span> <span class="p">{</span> <span class="err">$_.Eventid</span> <span class="err">-eq4800</span><span class="p">}</span>
-<span class="nt">PS</span> <span class="nt">C</span><span class="o">:</span><span class="err">\</span><span class="o">&gt;</span> <span class="nt">Get-WinEvent</span> <span class="nt">-FilterHashtable</span><span class="o">@</span><span class="p">{</span><span class="err">LogName=&quot;Secu</span> <span class="err">rity&quot;</span><span class="p">;</span> <span class="err">ID=4774</span><span class="p">}</span>
-</pre></div>
+<pre><code>PS C:\&gt; Show-Eventlog -computername &lt;SERVER NAME&gt;Get a specific list of events based on Event ID:
+PS C:\&gt; Get-Eventlog Security I ? { $_.Eventid -eq4800}
+PS C:\&gt; Get-WinEvent -FilterHashtable@{LogName=&quot;Secu rity&quot;; ID=4774}
+</code></pre>
 
 <h2 id="account-logon-audit-credential-validation-last-14-days">Account Logon - Audit Credential Validation Last 14 Days:<a class="headerlink" href="#account-logon-audit-credential-validation-last-14-days" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>PS C:\&gt; Get-Eventlog Security 4768,4771,4772,4769,4770,4649,4778,4779,4800,4801,48 02,4803,5378,5632,5633 -after ((get-date).addDays(-14))
-</pre></div>
+<pre><code>PS C:\&gt; Get-Eventlog Security 4768,4771,4772,4769,4770,4649,4778,4779,4800,4801,48 02,4803,5378,5632,5633 -after ((get-date).addDays(-14))
+</code></pre>
 
 <h2 id="account-logonlogoff">Account - Logon/Logoff:<a class="headerlink" href="#account-logonlogoff" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>PS C:\&gt; Get-Eventlog Security 4625,4634,4647,4624,4625,4648,4675,6272,6273,6274,62 75,6276,6277,6278,6279,6280,4649,4778,4779,4800,4801,4802,4803,5378,5632,5633,4964 -after ((getdate).addDays(-1))
-</pre></div>
+<pre><code>PS C:\&gt; Get-Eventlog Security 4625,4634,4647,4624,4625,4648,4675,6272,6273,6274,62 75,6276,6277,6278,6279,6280,4649,4778,4779,4800,4801,4802,4803,5378,5632,5633,4964 -after ((getdate).addDays(-1))
+</code></pre>
 
 <h2 id="account-management-audit-application-group-management">Account Management - Audit Application Group Management:<a class="headerlink" href="#account-management-audit-application-group-management" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>PS C:\&gt; Get-Eventlog Security 4783,4784,4785,4786,4787,4788,4789,4790,4741,4742,47 43,4744,4745,4746,4747,4748,4749,4750,4751,4752,4753,4759,4760,4761,4762,4782,4793,4727,4728,4729,4730,4731,4732,4733,4734,4735,4737,4754,4755,4756,4757,4758,4764,4720,4722,4723,4724,4725,4726,4738,4740,4765,4766,4767,4780,4781,4794,5376,5377 -after ((getdate).addDays(-1))
-</pre></div>
+<pre><code>PS C:\&gt; Get-Eventlog Security 4783,4784,4785,4786,4787,4788,4789,4790,4741,4742,47 43,4744,4745,4746,4747,4748,4749,4750,4751,4752,4753,4759,4760,4761,4762,4782,4793,4727,4728,4729,4730,4731,4732,4733,4734,4735,4737,4754,4755,4756,4757,4758,4764,4720,4722,4723,4724,4725,4726,4738,4740,4765,4766,4767,4780,4781,4794,5376,5377 -after ((getdate).addDays(-1))
+</code></pre>
 
 <h2 id="detailed-tracking-audit-dpapi-activity-process-termination-rpc-events">Detailed Tracking - Audit DPAPI Activity, Process Termination, RPC Events:<a class="headerlink" href="#detailed-tracking-audit-dpapi-activity-process-termination-rpc-events" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>PS C:\&gt; Get-EventLog Security 4692,4693,4694,4695,4689,5712 -after ((getdate).addDays(-1))
-</pre></div>
+<pre><code>PS C:\&gt; Get-EventLog Security 4692,4693,4694,4695,4689,5712 -after ((getdate).addDays(-1))
+</code></pre>
 
 <h2 id="domain-service-access-audit-directory-service-access">Domain Service Access - Audit Directory Service Access:<a class="headerlink" href="#domain-service-access-audit-directory-service-access" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>PS C:\&gt; Get-EventLog Security 4662,5136,5137,5138,5139,5141 -after ((getdate).addDays(-1))
-</pre></div>
+<pre><code>PS C:\&gt; Get-EventLog Security 4662,5136,5137,5138,5139,5141 -after ((getdate).addDays(-1))
+</code></pre>
 
 <h2 id="object-access-audit-file-share-file-system-samregistry-certifications">Object Access - Audit File Share, File System, SAM,Registry, Certifications:<a class="headerlink" href="#object-access-audit-file-share-file-system-samregistry-certifications" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>PS C:\&gt; Get-EventLog Security 4671,4691,4698,4699,4700,4701,4702,5148,5149,5888,5889,5890,4657,5039,4659,4660,4661,4663,4656,4658,4690,4874,4875,4880,4881,4882,4884,4885,4888,4890,4891,4892,4895,4896,4898,5145,5140,5142,5143,5144,5168,5140,5142,5143,5144,5168,5140,5142,5143,5144,5168,4664,4985,5152,5153,5031,5140,5150,5151,5154,5155,5156,5157,5158,5159 -after ((get-date).addDays(-1))
-</pre></div>
+<pre><code>PS C:\&gt; Get-EventLog Security 4671,4691,4698,4699,4700,4701,4702,5148,5149,5888,5889,5890,4657,5039,4659,4660,4661,4663,4656,4658,4690,4874,4875,4880,4881,4882,4884,4885,4888,4890,4891,4892,4895,4896,4898,5145,5140,5142,5143,5144,5168,5140,5142,5143,5144,5168,5140,5142,5143,5144,5168,4664,4985,5152,5153,5031,5140,5150,5151,5154,5155,5156,5157,5158,5159 -after ((get-date).addDays(-1))
+</code></pre>
 
 <h2 id="policy-change-audit-policy-change-microsoft-protection-service-windows-filtering-platform">Policy Change - Audit Policy Change, Microsoft Protection Service, Windows Filtering Platform:<a class="headerlink" href="#policy-change-audit-policy-change-microsoft-protection-service-windows-filtering-platform" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>PS C:\&gt; Get-EventLog Security 4715,4719,4817,4902,4904,4905,4906,4907,4908,4912,4713,4716,4717,4718,4739,4864,4865,4866,4867,4704,4705,4706,4707,4714,4944,4945,4946,4947,4948,4949,4950,4951,4952,4953,4954,4956,4957,4958,5046,5047,5048,5449,5450,4670 -after ((get-date).addDays(-1))
-</pre></div>
+<pre><code>PS C:\&gt; Get-EventLog Security 4715,4719,4817,4902,4904,4905,4906,4907,4908,4912,4713,4716,4717,4718,4739,4864,4865,4866,4867,4704,4705,4706,4707,4714,4944,4945,4946,4947,4948,4949,4950,4951,4952,4953,4954,4956,4957,4958,5046,5047,5048,5449,5450,4670 -after ((get-date).addDays(-1))
+</code></pre>
 
 <h2 id="privilege-use-audit-non-sensitivesensitive-privilege-use">Privilege Use - Audit Non-Sensitive/Sensitive Privilege Use:<a class="headerlink" href="#privilege-use-audit-non-sensitivesensitive-privilege-use" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>PS C:\&gt; Get-EventLog Security 4672,4673,4674 -after((get-date),addDays(-1))
-</pre></div>
+<pre><code>PS C:\&gt; Get-EventLog Security 4672,4673,4674 -after((get-date),addDays(-1))
+</code></pre>
 
 <h2 id="system-audit-security-state-change-security-system-extension-system-integrity-system-events">System - Audit Security State Change, Security System Extension, System Integrity, System Events:<a class="headerlink" href="#system-audit-security-state-change-security-system-extension-system-integrity-system-events" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>PS C:\&gt; Get-Eventlog Security 5024,5025,5027,5028,5029,5030,5032,5033,5034,5035,5037,5058,5059,6400,6401,6402,6403,6404,6405,6406,6407,4608,4609 ,4616, 4621, 4610, 4611, 4614,4622,4697,4612,4615,4618,4816,5038,5056,5057,5060,5061,5062,6281 -after ((get-date).addDays(-1))
-</pre></div>
+<pre><code>PS C:\&gt; Get-Eventlog Security 5024,5025,5027,5028,5029,5030,5032,5033,5034,5035,5037,5058,5059,6400,6401,6402,6403,6404,6405,6406,6407,4608,4609 ,4616, 4621, 4610, 4611, 4614,4622,4697,4612,4615,4618,4816,5038,5056,5057,5060,5061,5062,6281 -after ((get-date).addDays(-1))
+</code></pre>
 
 <h2 id="add-microsoft-iis-cmdlet">Add Microsoft IIS cmdlet:<a class="headerlink" href="#add-microsoft-iis-cmdlet" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>PS C:\&gt; add-pssnapin WebAdministration
+<pre><code>PS C:\&gt; add-pssnapin WebAdministration
 PS C:\&gt; Import-Module WebAdministration Get IIS Website info:
 PS C:\&gt; Get-IISSite Get IIS Log Path Location:
-PS C:\&gt; (Get-WebConfigurationProperty &#39;/system.applicationHost/sites/siteDefaults&#39; -Name &#39;logfile.directory&#39;).Value
-</pre></div>
+PS C:\&gt; (Get-WebConfigurationProperty '/system.applicationHost/sites/siteDefaults' -Name 'logfile.directory').Value
+</code></pre>
 
 <h2 id="set-variable-for-iis-log-path-default-path">Set variable for IIS Log Path (default path):<a class="headerlink" href="#set-variable-for-iis-log-path-default-path" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>PS C:\&gt; $LogDirPath = &quot;C:\inetpub\logs\LogFiles\W3SVCl&quot;
-</pre></div>
+<pre><code>PS C:\&gt; $LogDirPath = &quot;C:\inetpub\logs\LogFiles\W3SVCl&quot;
+</code></pre>
 
 <h2 id="get-iis-http-log-file-list-from-last-7-days">Get IIS HTTP log file list from Last 7 days:<a class="headerlink" href="#get-iis-http-log-file-list-from-last-7-days" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><span class="x">PS C:\&gt; Get-Child!tem -Path C:\inetpub\logs\LogFiles\w3svcl -recurse I WhereObject </span><span class="cp">{</span><span class="nv">$_</span><span class="o">.</span> <span class="na">lastwritetime</span> <span class="o">-</span><span class="na">lt</span> <span class="o">(</span><span class="na">get</span><span class="o">-</span><span class="na">date</span><span class="o">).</span><span class="na">addDays</span><span class="o">(-</span><span class="m">7</span><span class="o">)</span><span class="cp">}</span><span class="x"></span>
-</pre></div>
+<pre><code>PS C:\&gt; Get-Child!tem -Path C:\inetpub\logs\LogFiles\w3svcl -recurse I WhereObject {$_. lastwritetime -lt (get-date).addDays(-7)}
+</code></pre>
 
 <h2 id="view-iis-logs-using-logdirpath-variable-set-above">View IIS Logs (Using $LogDirPath variable set above):<a class="headerlink" href="#view-iis-logs-using-logdirpath-variable-set-above" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><span class="x">PS C:\&gt; Get-Content $LogDirPath\*, log I%</span><span class="cp">{</span><span class="nv">$_</span> <span class="o">-</span><span class="na">replace</span> <span class="s1">&#39;#Fields: &#39;</span><span class="o">,</span> <span class="s2">&quot;} I?{$_ -notmatch &quot;</span><span class="err">&quot;#</span><span class="s1">&#39;} I ConvertFrom-Csv -Delimiter &#39;</span>
-</pre></div>
+<pre><code>PS C:\&gt; Get-Content $LogDirPath\*, log I%{$_ -replace '#Fields: ', &quot;} I?{$_ -notmatch &quot;&quot;#'} I ConvertFrom-Csv -Delimiter '
+</code></pre>
 
 <h2 id="view-iis-logs">View IIS Logs:<a class="headerlink" href="#view-iis-logs" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><span class="x">PS C:\&gt; Get-Content &lt;!IS LOG FILE NAME&gt;, log I%</span><span class="cp">{</span><span class="nv">$_</span> <span class="o">-</span><span class="na">replace</span> <span class="s1">&#39;#Fields: &#39;</span><span class="o">,</span> <span class="s1">&#39;&#39;</span><span class="cp">}</span><span class="x"> 17</span><span class="cp">{</span><span class="nv">$_</span> <span class="o">-</span><span class="na">notmatch</span> <span class="s1">&#39;A#&#39;</span><span class="cp">}</span><span class="x"> I ConvertFrom-Csv -Delimiter &#39; &#39;Find in IIS logs IP address 192.168.*·* pattern:</span>
-<span class="x">PS C:\&gt; Select-String -Path $LogDirPath\*, log -Pattern &#39;192,168,*,*&#39;</span>
-</pre></div>
+<pre><code>PS C:\&gt; Get-Content &lt;!IS LOG FILE NAME&gt;, log I%{$_ -replace '#Fields: ', ''} 17{$_ -notmatch 'A#'} I ConvertFrom-Csv -Delimiter ' 'Find in IIS logs IP address 192.168.*·* pattern:
+PS C:\&gt; Select-String -Path $LogDirPath\*, log -Pattern '192,168,*,*'
+</code></pre>
 
 <h2 id="find-in-iis-logs-common-sql-injection-patterns">Find in IIS logs common SQL injection patterns:<a class="headerlink" href="#find-in-iis-logs-common-sql-injection-patterns" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>PS C:\&gt; Select-String -Path $LogDirPath\*, log&#39;(@@version) I (sqlmap) I (Connect\(\)) I (cast\() I (char\() I ( bcha r\ () I ( sysdatabases) I ( \ (select) I (convert\ () I ( Connect\ () I ( count\() I (sys objects)&#39;
-</pre></div></div>
+<pre><code>PS C:\&gt; Select-String -Path $LogDirPath\*, log'(@@version) I (sqlmap) I (Connect\(\)) I (cast\() I (char\() I ( bcha r\ () I ( sysdatabases) I ( \ (select) I (convert\ () I ( Connect\ () I ( count\() I (sys objects)'
+</code></pre></div>
         </div>
 
         <footer class="col-md-12">

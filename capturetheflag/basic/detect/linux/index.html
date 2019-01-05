@@ -12,7 +12,7 @@
         <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/darcula.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/purebasic.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -594,55 +594,55 @@
                 <div class="col-md-9" role="main">
 
 <h2 id="authentication-logs-in-ubuntu">Authentication logs in Ubuntu:<a class="headerlink" href="#authentication-logs-in-ubuntu" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>tail /var/log/auth. log
+<pre><code>tail /var/log/auth. log
 grep -i &quot;fail&quot; /var/log/auth. log
-</pre></div>
+</code></pre>
 
 <h2 id="user-login-logs-in-ubuntu">User login logs in Ubuntu:<a class="headerlink" href="#user-login-logs-in-ubuntu" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>tail /var/
-</pre></div>
+<pre><code>tail /var/
+</code></pre>
 
 <h2 id="look-at-samba-activity">Look at samba activity:<a class="headerlink" href="#look-at-samba-activity" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>grep -i samba /var/log/syslog
-</pre></div>
+<pre><code>grep -i samba /var/log/syslog
+</code></pre>
 
 <h2 id="look-at-cron-activity">Look at cron activity:<a class="headerlink" href="#look-at-cron-activity" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>grep -i cron /var/log/syslog
-</pre></div>
+<pre><code>grep -i cron /var/log/syslog
+</code></pre>
 
 <h2 id="look-at-sudo-activity">Look at sudo activity:<a class="headerlink" href="#look-at-sudo-activity" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>grep -i sudo /var/log/auth. log
-</pre></div>
+<pre><code>grep -i sudo /var/log/auth. log
+</code></pre>
 
 <h2 id="look-in-apache-logs-for-404-errors">Look in Apache Logs for 404 errors:<a class="headerlink" href="#look-in-apache-logs-for-404-errors" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>grep 404 &lt;LOG FILE NAME&gt; I grep -v -E &quot;favicon. ico I robots. txt&quot;
-</pre></div>
+<pre><code>grep 404 &lt;LOG FILE NAME&gt; I grep -v -E &quot;favicon. ico I robots. txt&quot;
+</code></pre>
 
 <h2 id="look-at-apache-logs-for-files-requested">Look at Apache Logs for files requested:<a class="headerlink" href="#look-at-apache-logs-for-files-requested" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>head access_log I awk &#39;{print $7}&#39;
-</pre></div>
+<pre><code>head access_log I awk '{print $7}'
+</code></pre>
 
 <h2 id="monitor-for-new-created-files-every-smin">Monitor for new created files every Smin:<a class="headerlink" href="#monitor-for-new-created-files-every-smin" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>watch -n 300 -d ls -lR /&lt;WEB DIRECTORY&gt;
-</pre></div>
+<pre><code>watch -n 300 -d ls -lR /&lt;WEB DIRECTORY&gt;
+</code></pre>
 
 <h2 id="look-where-traffic-is-coming-from">Look where traffic is coming from:<a class="headerlink" href="#look-where-traffic-is-coming-from" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>cat &lt;LOG FILE NAME&gt; I fgrep -v &lt;YOUR DOMAIN&gt; I cut -d\&quot; -f4 I grep -v &quot;&quot;-
-</pre></div>
+<pre><code>cat &lt;LOG FILE NAME&gt; I fgrep -v &lt;YOUR DOMAIN&gt; I cut -d\&quot; -f4 I grep -v &quot;&quot;-
+</code></pre>
 
 <h2 id="monitor-for-tcp-connections-every-5-seconds">Monitor for TCP connections every 5 seconds:<a class="headerlink" href="#monitor-for-tcp-connections-every-5-seconds" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>netstat -ac 5 I grep tcp
-</pre></div>
+<pre><code>netstat -ac 5 I grep tcp
+</code></pre>
 
 <h2 id="install-audit-framework-and-review-syscallsevents">Install audit framework and review syscalls/events:<a class="headerlink" href="#install-audit-framework-and-review-syscallsevents" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>apt-get install auditd
+<pre><code>apt-get install auditd
 auditctl -a exit,always -5 execve
 ausearch -m execve
-</pre></div>
+</code></pre>
 
 <h2 id="get-audit-report-summary">Get audit report summary:<a class="headerlink" href="#get-audit-report-summary" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>aureport
-</pre></div></div>
+<pre><code>aureport
+</code></pre></div>
         </div>
 
         <footer class="col-md-12">

@@ -12,7 +12,7 @@
         <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/darcula.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/purebasic.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -592,42 +592,42 @@
 
 <h1 id="hex-conversion">HEX CONVERSION<a class="headerlink" href="#hex-conversion" title="Permanent link">&para;</a></h1>
 <h2 id="convert-from-hex-to-decimal-in-windows">Convert from hex to decimal in Windows:<a class="headerlink" href="#convert-from-hex-to-decimal-in-windows" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; set /a 0xff
+<pre><code>C:\&gt; set /a 0xff
 PS C:\&gt; 0xff
-</pre></div>
+</code></pre>
 
 <h2 id="other-basic-math-in-windows">Other Basic Math in Windows:<a class="headerlink" href="#other-basic-math-in-windows" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; set /a 1+2
+<pre><code>C:\&gt; set /a 1+2
 C:\&gt; set /a 3*(9/4)
 C:\&gt; set /a (2*5)/2
 C:\&gt; set /a &quot;32&gt;&gt;3&quot;
-</pre></div>
+</code></pre>
 
 <h2 id="decode-base64-text-in-a-file">Decode Base64 text in a file:<a class="headerlink" href="#decode-base64-text-in-a-file" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; certutil -decode &lt;BASE64&lt;DECODED FILE NAME&gt;
-</pre></div>
+<pre><code>C:\&gt; certutil -decode &lt;BASE64&lt;DECODED FILE NAME&gt;
+</code></pre>
 
 <h1 id="encoded">ENCODED<a class="headerlink" href="#encoded" title="Permanent link">&para;</a></h1>
 <h2 id="decode-xor-and-search-for-http">Decode XOR and search for http:<a class="headerlink" href="#decode-xor-and-search-for-http" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>Ref,https://blog.didierstevens.com/programs/xorsearch/
+<pre><code>Ref,https://blog.didierstevens.com/programs/xorsearch/
 C:\&gt; xorsearch,exe -i -s &lt;INPUT FILE NAME&gt; http
-</pre></div>
+</code></pre>
 
 <h2 id="convert-from-hex-to-decimal-in-linux">Convert from hex to decimal in Linux:<a class="headerlink" href="#convert-from-hex-to-decimal-in-linux" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>echo u0xff&quot;lwcalc -d
+<pre><code>echo u0xff&quot;lwcalc -d
 = 255
-</pre></div>
+</code></pre>
 
 <h2 id="convert-from-decimal-to-hex-in-linux">Convert from decimal to hex in Linux:<a class="headerlink" href="#convert-from-decimal-to-hex-in-linux" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>$ <span class="nb">echo</span> u25s<span class="s2">&quot;1wcalc -h</span>
-<span class="s2">= 0xff</span>
-</pre></div>
+<pre><code>$ echo u25s&quot;1wcalc -h
+= 0xff
+</code></pre>
 
 <h2 id="decode-html-strings">Decode HTML Strings:<a class="headerlink" href="#decode-html-strings" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>PS C:\&gt; Add-Type -AssemblyName System.Web
+<pre><code>PS C:\&gt; Add-Type -AssemblyName System.Web
 PS C:\&gt;[System.Uri] ::UnescapeDataString(&quot;HTTP%3a%2f%2fHello%20World.com&quot;)
 HTTP://Hello World.com
-</pre></div></div>
+</code></pre></div>
         </div>
 
         <footer class="col-md-12">

@@ -12,7 +12,7 @@
         <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/darcula.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/purebasic.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -601,57 +601,57 @@
 <h1 id="linux">linux<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h1>
 <h1 id="network-discovery">NETWORK DISCOVERY<a class="headerlink" href="#network-discovery" title="Permanent link">&para;</a></h1>
 <h2 id="net-view-scan">Net view scan:<a class="headerlink" href="#net-view-scan" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>smbtree -b
+<pre><code>smbtree -b
 smbtree -D
 smbtree -5
-</pre></div>
+</code></pre>
 
 <h2 id="view-open-5mb-shares">View open 5MB shares:<a class="headerlink" href="#view-open-5mb-shares" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>smbclient -L &lt;HOST NAME&gt;
+<pre><code>smbclient -L &lt;HOST NAME&gt;
 smbstatus
-</pre></div>
+</code></pre>
 
 <h2 id="basic-ping-scan">Basic ping scan:<a class="headerlink" href="#basic-ping-scan" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>for ip in $(seq 1 254); do ping -c 1 192.168.1.$ip&gt;/dev/null; [ $? -eq 0 ] &amp;&amp; echo &quot;192.168.1. $ip UP&quot; 11 : ; done
-</pre></div>
+<pre><code>for ip in $(seq 1 254); do ping -c 1 192.168.1.$ip&gt;/dev/null; [ $? -eq 0 ] &amp;&amp; echo &quot;192.168.1. $ip UP&quot; 11 : ; done
+</code></pre>
 
 <h1 id="dhcp">DHCP<a class="headerlink" href="#dhcp" title="Permanent link">&para;</a></h1>
 <h2 id="view-dhcp-lease-logs">View DHCP lease logs:<a class="headerlink" href="#view-dhcp-lease-logs" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>Red Hat 3:
+<pre><code>Red Hat 3:
 cat /var/lib/dhcpd/dhcpd. leases
 
 Ubuntu:
-grep -Ei &#39;dhcp&#39; /var/log/syslog.1
-</pre></div>
+grep -Ei 'dhcp' /var/log/syslog.1
+</code></pre>
 
 <h2 id="ubuntu-dhcp-logs">Ubuntu DHCP logs:<a class="headerlink" href="#ubuntu-dhcp-logs" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>tail -f dhcpd. log
-</pre></div>
+<pre><code>tail -f dhcpd. log
+</code></pre>
 
 <h1 id="dns">DNS<a class="headerlink" href="#dns" title="Permanent link">&para;</a></h1>
 <h2 id="start-dns-logging">Start DNS logging:<a class="headerlink" href="#start-dns-logging" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>rndc querylog
-</pre></div>
+<pre><code>rndc querylog
+</code></pre>
 
 <h2 id="view-dns-logs">View DNS logs:<a class="headerlink" href="#view-dns-logs" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>tail -f /var/log/messages I grep named
-</pre></div>
+<pre><code>tail -f /var/log/messages I grep named
+</code></pre>
 
 <h1 id="hashing">HASHING<a class="headerlink" href="#hashing" title="Permanent link">&para;</a></h1>
 <h2 id="hash-all-executable-files-in-these-specified-locations">Hash all executable files in these specified locations:<a class="headerlink" href="#hash-all-executable-files-in-these-specified-locations" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>find /&lt;PATHNAME TO ENUMERATE&gt; -type f -exec mdSsum {} &gt;&gt; mdSsums.txt \;
+<pre><code>find /&lt;PATHNAME TO ENUMERATE&gt; -type f -exec mdSsum {} &gt;&gt; mdSsums.txt \;
 mdSdeep -rs /&gt; mdSsums.txt
-</pre></div>
+</code></pre>
 
 <h1 id="netbios">NETBIOS<a class="headerlink" href="#netbios" title="Permanent link">&para;</a></h1>
 <h2 id="basic-nbtstat-scan">Basic nbtstat scan:<a class="headerlink" href="#basic-nbtstat-scan" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>nbtscan &lt;IP ADDRESS OR RANGE&gt;
-</pre></div>
+<pre><code>nbtscan &lt;IP ADDRESS OR RANGE&gt;
+</code></pre>
 
 <h1 id="passwords">PASSWORDS<a class="headerlink" href="#passwords" title="Permanent link">&para;</a></h1>
 <h2 id="password-and-username-guessing-or-checks">Password and username guessing or checks:<a class="headerlink" href="#password-and-username-guessing-or-checks" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><span class="nt">while</span> <span class="nt">read</span> <span class="nt">line</span><span class="o">;</span> <span class="nt">do</span> <span class="nt">username</span><span class="o">=$</span><span class="nt">line</span><span class="o">;</span> <span class="nt">while</span> <span class="nt">readline</span><span class="o">;</span> <span class="nt">do</span> <span class="nt">smbclient</span> <span class="nt">-L</span> <span class="o">&lt;</span><span class="nt">TARGET</span> <span class="nt">IP</span> <span class="nt">ADDRESS</span><span class="o">&gt;</span> <span class="nt">-U</span> <span class="o">$</span><span class="nt">username</span><span class="o">%$</span><span class="nt">line</span> <span class="nt">-g</span> <span class="nt">-d</span> <span class="nt">0</span><span class="o">;</span> <span class="nt">echo</span> <span class="o">$</span><span class="nt">username</span><span class="o">:$</span><span class="nt">line</span><span class="o">;</span><span class="nt">done</span><span class="o">&lt;&lt;</span><span class="nt">PASSWORDS</span><span class="o">&gt;</span><span class="p">.</span><span class="nc">txt</span><span class="o">;</span> <span class="nt">done</span><span class="o">&lt;&lt;</span><span class="nt">USER</span> <span class="nt">NAMES</span><span class="o">&gt;,</span><span class="nt">txt</span>
-</pre></div></div>
+<pre><code>while read line; do username=$line; while readline; do smbclient -L &lt;TARGET IP ADDRESS&gt; -U $username%$line -g -d 0; echo $username:$line;done&lt;&lt;PASSWORDS&gt;.txt; done&lt;&lt;USER NAMES&gt;,txt
+</code></pre></div>
         </div>
 
         <footer class="col-md-12">

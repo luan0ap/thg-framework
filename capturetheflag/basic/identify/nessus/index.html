@@ -12,7 +12,7 @@
         <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/darcula.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/purebasic.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -587,17 +587,17 @@
 
 <h1 id="nessus">NESSUS<a class="headerlink" href="#nessus" title="Permanent link">&para;</a></h1>
 <h1 id="basic-nessus-scan">Basic Nessus scan:<a class="headerlink" href="#basic-nessus-scan" title="Permanent link">&para;</a></h1>
-<div class="codehilite"><pre><span></span>nessus -q -x -T html &lt;NESSUS SERVER IP ADDRESS&gt; &lt;NESSUS SERVER PORT 1241&gt; &lt;ADMIN ACCOUNT&gt; &lt;ADMIN&gt;PASSWORD&gt; &lt;FILE WITH TARGETS&gt;,txt &lt;RESULTS FILENAME&gt;.html
+<pre><code>nessus -q -x -T html &lt;NESSUS SERVER IP ADDRESS&gt; &lt;NESSUS SERVER PORT 1241&gt; &lt;ADMIN ACCOUNT&gt; &lt;ADMIN&gt;PASSWORD&gt; &lt;FILE WITH TARGETS&gt;,txt &lt;RESULTS FILENAME&gt;.html
 nessus [-vnh] [-c .refile] [-VJ [-T &lt;format&gt;]
-</pre></div>
+</code></pre>
 
 <h1 id="batch-mode-scan">Batch-mode scan<a class="headerlink" href="#batch-mode-scan" title="Permanent link">&para;</a></h1>
-<div class="codehilite"><pre><span></span>nessus -q [-pPS] &lt;HOST&gt; &lt;PORT&gt; &lt;USER NAME&gt;&lt;PASSWORD&gt; &lt;targets-file&gt; &lt;result-file&gt;
-</pre></div>
+<pre><code>nessus -q [-pPS] &lt;HOST&gt; &lt;PORT&gt; &lt;USER NAME&gt;&lt;PASSWORD&gt; &lt;targets-file&gt; &lt;result-file&gt;
+</code></pre>
 
 <h1 id="report-conversion">Report conversion:<a class="headerlink" href="#report-conversion" title="Permanent link">&para;</a></h1>
-<div class="codehilite"><pre><span></span># nessus -i in. [nsrlnbe] -oout. [xmllnsrlnbelhtmlltxt]
-</pre></div></div>
+<pre><code># nessus -i in. [nsrlnbe] -oout. [xmllnsrlnbelhtmlltxt]
+</code></pre></div>
         </div>
 
         <footer class="col-md-12">

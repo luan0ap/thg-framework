@@ -12,7 +12,7 @@
         <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/darcula.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/purebasic.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -616,19 +616,21 @@
                 <div class="col-md-9" role="main">
 
 <h1 id="system-information">SYSTEM INFORMATION<a class="headerlink" href="#system-information" title="Permanent link">&para;</a></h1>
-<p><div class="codehilite"><pre><span></span>C:\&gt; echo %DATE% %TIME%
+<pre><code>C:\&gt; echo %DATE% %TIME%
 C:\&gt; hostname
 C:\&gt; systeminfo
 C:\&gt; systeminfo I findstr /B /C:&quot;OS Name&quot; /C:&quot;OSVersion&quot;
 C:\&gt; wmic csproduct get name
 C:\&gt; wmic bios get serialnumber
 C:\&gt; wmic computersystem list brief
-</pre></div>
-<img alt="Ref" src="https://technet.microsoft.com/enus/sysinternals/psinfo.aspx" />
-<div class="codehilite"><pre><span></span>C:\&gt; psinfo -accepteula -s -h -d
-</pre></div></p>
+</code></pre>
+
+<p><a href="https://technet.microsoft.com/enus/sysinternals/psinfo.aspx">https://technet.microsoft.com/enus/sysinternals/psinfo.aspx</a></p>
+<pre><code>C:\&gt; psinfo -accepteula -s -h -d
+</code></pre>
+
 <h2 id="user-information">USER INFORMATION<a class="headerlink" href="#user-information" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; whoami
+<pre><code>C:\&gt; whoami
 C:\&gt; net users
 C:\&gt; net localgroup administrators
 C:\&gt; net group administrators
@@ -638,10 +640,10 @@ C:\&gt; wmic group list
 C:\&gt; wmic netlogin getname, lastlogon,badpasswordcount
 C:\&gt; wmic netclient list brief
 C:\&gt; doskey /history&gt; history.txt
-</pre></div>
+</code></pre>
 
 <h2 id="network-information">NETWORK INFORMATION<a class="headerlink" href="#network-information" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; netstat -e
+<pre><code>C:\&gt; netstat -e
 C:\&gt; netstat -naob
 C:\&gt; netstat -nr
 C:\&gt; netstat -vb
@@ -657,10 +659,10 @@ C:\&gt; reg query &quot;HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet 
 C:\&gt; type %SYSTEMROOT%\system32\drivers\etc\hosts
 C:\&gt; wmic nicconfig getdescriptions,IPaddress,MACaddress
 C:\&gt; wmic netuse getname,username,connectiontype, localname
-</pre></div>
+</code></pre>
 
 <h2 id="service-information">SERVICE INFORMATION<a class="headerlink" href="#service-information" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; at
+<pre><code>C:\&gt; at
 C:\&gt; tasklist
 C:\&gt; task list /SVC
 C:\&gt; tasklist /SVC /fi &quot;imagename eq svchost.exe&quot;
@@ -673,35 +675,35 @@ C:\&gt; wmic process list brief
 C:\&gt; wmic process list status
 C:\&gt; wmic process list memory
 C:\&gt; wmic job list brief
-</pre></div>
+</code></pre>
 
-<h2 id="i-findstr-running">I findstr "Running"<a class="headerlink" href="#i-findstr-running" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>PS C:\&gt; Get-Service I Where-Object { $_.Status -eq&quot;running&quot; }
-</pre></div>
+<h2 id="i-findstr-running">I findstr &ldquo;Running&rdquo;<a class="headerlink" href="#i-findstr-running" title="Permanent link">&para;</a></h2>
+<pre><code>PS C:\&gt; Get-Service I Where-Object { $_.Status -eq&quot;running&quot; }
+</code></pre>
 
 <h2 id="list-of-all-processes-and-then-all-loaded-modules">List of all processes and then all loaded modules:<a class="headerlink" href="#list-of-all-processes-and-then-all-loaded-modules" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><span class="x">PS C:\&gt; Get-Process !select modules!ForeachObject</span><span class="cp">{</span><span class="nv">$_.modules</span><span class="cp">}</span><span class="x"></span>
-</pre></div>
+<pre><code>PS C:\&gt; Get-Process !select modules!ForeachObject{$_.modules}
+</code></pre>
 
 <h2 id="policy-patch-and-settings-information">POLICY, PATCH AND SETTINGS INFORMATION<a class="headerlink" href="#policy-patch-and-settings-information" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; set
+<pre><code>C:\&gt; set
 C:\&gt; gpresult /r
 C:\&gt; gpresult /z &gt; &lt;OUTPUT FILE NAME&gt;.txt
 C:\&gt; gpresult /H report.html /F
 C:\&gt; wmic qfe
-</pre></div>
+</code></pre>
 
 <h2 id="list-gpo-software-installed">List GPO software installed:<a class="headerlink" href="#list-gpo-software-installed" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; reg query uHKLM\Software\Microsoft\Windows\CurrentVersion\Group Policy\AppMgmt&quot;
-</pre></div>
+<pre><code>C:\&gt; reg query uHKLM\Software\Microsoft\Windows\CurrentVersion\Group Policy\AppMgmt&quot;
+</code></pre>
 
 <h2 id="autorun-and-autoload-information-startup-information">AUTORUN AND AUTOLOAD INFORMATION Startup information:<a class="headerlink" href="#autorun-and-autoload-information-startup-information" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; wmic startup list full
+<pre><code>C:\&gt; wmic startup list full
 C:\&gt; wmic ntdomain list brief
-</pre></div>
+</code></pre>
 
 <h2 id="view-directory-contents-of-startup-folder">View directory contents of startup folder:<a class="headerlink" href="#view-directory-contents-of-startup-folder" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; dir &quot;%SystemDrive%\ProgramData\Microsoft\Windows\StartMenu\P rog rams\Sta rtup&quot;
+<pre><code>C:\&gt; dir &quot;%SystemDrive%\ProgramData\Microsoft\Windows\StartMenu\P rog rams\Sta rtup&quot;
 C:\&gt; dir &quot;%SystemDrive%\Documents and Settings\All Use rs\Sta rt Menu\Prog rams\Sta rtup&quot;
 C:\&gt; dir %userprofile%\Start Menu\Programs\Startup
 C:\&gt; %ProgramFiles%\Startup\
@@ -714,28 +716,29 @@ C:\&gt; dir &quot;%ALLUSERSPROFILE%\StartMenu\P rog rams\Sta rtup&quot;
 C:\&gt; type C:\Windows\winstart.bat
 C:\&gt; type %windir%\wininit.ini
 C:\&gt; type %windir%\win.ini
-</pre></div>
+</code></pre>
 
 <h2 id="view-autoruns-hide-microsoft-files">View autoruns, hide Microsoft files:<a class="headerlink" href="#view-autoruns-hide-microsoft-files" title="Permanent link">&para;</a></h2>
-<p><img alt="Ref" src="https://technet.microsoft.com/enus/sysinternals/bb963902.aspx" />
-<div class="codehilite"><pre><span></span>C:\&gt; autorunsc -accepteula -m
+<p><a href="https://technet.microsoft.com/enus/sysinternals/bb963902.aspx">https://technet.microsoft.com/enus/sysinternals/bb963902.aspx</a></p>
+<pre><code>C:\&gt; autorunsc -accepteula -m
 C:\&gt; type C:\Autoexec.bat&quot;
-</pre></div></p>
+</code></pre>
+
 <h2 id="show-all-autorun-files-export-to-csv-and-check-withvirustotal">Show all autorun files, export to csv and check withVirusTotal:<a class="headerlink" href="#show-all-autorun-files-export-to-csv-and-check-withvirustotal" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; autorunsc.exe -accepteula -a -c -i -e -f -l -m -v
-</pre></div>
+<pre><code>C:\&gt; autorunsc.exe -accepteula -a -c -i -e -f -l -m -v
+</code></pre>
 
 <h2 id="hkey_classes_root">HKEY_CLASSES_ROOT:<a class="headerlink" href="#hkey_classes_root" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; reg query HKCR\Comfile\Shell\Open\Command
+<pre><code>C:\&gt; reg query HKCR\Comfile\Shell\Open\Command
 C:\&gt; reg query HKCR\Batfile\Shell\Open\Command
 C:\&gt; reg query HKCR\htafile\Shell\Open\Command
 C:\&gt; reg query HKCR\Exefile\Shell\Open\Command
 C:\&gt; reg query HKCR\Exefiles\Shell\Open\Command
 C:\&gt; reg query HKCR\piffile\shell\open\command
-</pre></div>
+</code></pre>
 
 <h2 id="hkey_current_users">HKEY_CURRENT_USERS:<a class="headerlink" href="#hkey_current_users" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; reg query uHKCU\Control Panel\Desktop&quot;
+<pre><code>C:\&gt; reg query uHKCU\Control Panel\Desktop&quot;
 C:\&gt; reg query HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run
 C:\&gt; reg query HKCU\Software\Microsoft\Windows\CurrentVersion\Run
 C:\&gt; reg query HKCU\Software\Microsoft\Windows\CurrentVersion\Runonce
@@ -759,10 +762,10 @@ C:\&gt; reg query uHKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\User 
 C:\&gt; reg query HKCU\Software\Microsoft\Windows\CurrentVersion\Applets\RegEdit /v LastKey
 C:\&gt; reg query HKCU\Software\Microsoft\InternetExp lo re r\ TypedURLs
 C:\&gt; reg query uHKCU\Software\Policies\Microsoft\Windows\ControlPanel \Desktop&quot;
-</pre></div>
+</code></pre>
 
 <h2 id="hkey_local_machine">HKEY_LOCAL_MACHINE:<a class="headerlink" href="#hkey_local_machine" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; reg query  HKLM\SOFTWARE\Mic rosoft\Act ive Setup\Installed Components /s
+<pre><code>C:\&gt; reg query  HKLM\SOFTWARE\Mic rosoft\Act ive Setup\Installed Components /s
 C:\&gt; reg query  HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\explorer\User Shell Folders
 C:\&gt; reg query  HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\explorer\Shell Folders
 C:\&gt; reg query  HKLM\Software\Microsoft\Windows\CurrentVersion\explorer\ShellExecuteHooks
@@ -790,96 +793,98 @@ C:\&gt; reg query  HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Ex
 C:\&gt; reg query  HKLM\SYSTEM\CurrentControlSet\Control\SessionManager
 C:\&gt; reg query  HKLM\SYSTEM\CurrentControlSet\Control\SessionManager\KnownDLLs
 C:\&gt; reg query  HKLM\SYSTEM\ControlSet001\Control\SessionManager\KnownDLLs
-</pre></div>
+</code></pre>
 
 <h1 id="logs">LOGS<a class="headerlink" href="#logs" title="Permanent link">&para;</a></h1>
 <h2 id="copy-event-logs">Copy event logs:<a class="headerlink" href="#copy-event-logs" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; wevtutil epl Security C:\&lt;BACK UPPATH&gt;\mylogs.evtx
+<pre><code>C:\&gt; wevtutil epl Security C:\&lt;BACK UPPATH&gt;\mylogs.evtx
 C:\&gt; wevtutil epl System C:\&lt;BACK UPPATH&gt;\mylogs.evtx
 C:\&gt; wevtutil epl Application C:\&lt;BACK UPPATH&gt;\mylogs.evtx
-</pre></div>
+</code></pre>
 
 <h2 id="get-list-of-logs-remotely">Get list of logs remotely:<a class="headerlink" href="#get-list-of-logs-remotely" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>Ref. https://technet.microsoft.com/enus/sysinternals/psloglist.aspx
-
-C:\&gt; psloglist \\&lt;REMOTE COMPUTER&gt; -accepteula -h 12 -x
-</pre></div>
+<p><a href="https://technet.microsoft.com/enus/sysinternals/psloglist.aspx">https://technet.microsoft.com</a> </p>
+<pre><code>C:\&gt; psloglist \\&lt;REMOTE COMPUTER&gt; -accepteula -h 12 -x
+</code></pre>
 
 <h2 id="clear-all-logs-and-start-a-baseline-log-to-monitor">Clear all logs and start a baseline log to monitor:<a class="headerlink" href="#clear-all-logs-and-start-a-baseline-log-to-monitor" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>PS C:\&gt; wevtutil el I Foreach-Object {wevtutil cl&quot;$_&quot;}
-</pre></div>
+<pre><code>PS C:\&gt; wevtutil el I Foreach-Object {wevtutil cl&quot;$_&quot;}
+</code></pre>
 
 <h2 id="list-log-filenames-and-path-location">List log filenames and path location:<a class="headerlink" href="#list-log-filenames-and-path-location" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; wmic nteventlog get path,filename,writeable
-</pre></div>
+<pre><code>C:\&gt; wmic nteventlog get path,filename,writeable
+</code></pre>
 
 <h2 id="take-pre-breach-log-export">Take pre breach log export:<a class="headerlink" href="#take-pre-breach-log-export" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>PS C:\&gt; wevtutil el I ForEach-Object{Get-Eventlog -Log &quot;$_&quot; I Export-Csv -Path (:\&lt;BASELINE LOG&gt;,csv -Append}
-</pre></div>
+<pre><code>PS C:\&gt; wevtutil el I ForEach-Object{Get-Eventlog -Log &quot;$_&quot; I Export-Csv -Path (:\&lt;BASELINE LOG&gt;,csv -Append}
+</code></pre>
 
 <h2 id="take-post-breach-log-export">Take post breach log export:<a class="headerlink" href="#take-post-breach-log-export" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>PS C:\&gt; wevtutil el I ForEach-Object{Get-EventLog -Log&quot;$_&quot; I Export-Csv -Path C:\&lt;POST BASELINELOG&gt;,CSV -Append}
-</pre></div>
+<pre><code>PS C:\&gt; wevtutil el I ForEach-Object{Get-EventLog -Log&quot;$_&quot; I Export-Csv -Path C:\&lt;POST BASELINELOG&gt;,CSV -Append}
+</code></pre>
 
 <h2 id="compare-two-files-baseline-and-post-breach-logs">Compare two files baseline and post breach logs:<a class="headerlink" href="#compare-two-files-baseline-and-post-breach-logs" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>PS C:\&gt; Compare-Object -ReferenceObject $(GetContent&quot;C:\&lt;PATH TO FILE&gt;\&lt;ORIGINAL BASELINELOGS&gt;.txt&quot;) -DifferenceObject $(Get-Content&quot;C:\&lt;PATH TO FILE&gt;\&lt;POST BASELINE LOGS&gt;.txt&quot;) &gt;&gt;&lt;DIFFERENCES LOG&gt;.txt
-</pre></div>
+<pre><code>PS C:\&gt; Compare-Object -ReferenceObject $(GetContent&quot;C:\&lt;PATH TO FILE&gt;\&lt;ORIGINAL BASELINELOGS&gt;.txt&quot;) -DifferenceObject $(Get-Content&quot;C:\&lt;PATH TO FILE&gt;\&lt;POST BASELINE LOGS&gt;.txt&quot;) &gt;&gt;&lt;DIFFERENCES LOG&gt;.txt
+</code></pre>
 
 <h2 id="this-deletes-all-logs">This deletes all logs:<a class="headerlink" href="#this-deletes-all-logs" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>PS C:\&gt; wevtutil el I Foreach-Object {wevtutil cl&quot;$_&quot;}
-</pre></div>
+<pre><code>PS C:\&gt; wevtutil el I Foreach-Object {wevtutil cl&quot;$_&quot;}
+</code></pre>
 
 <h2 id="files-drives-and-shares-information">FILES, DRIVES AND SHARES INFORMATION<a class="headerlink" href="#files-drives-and-shares-information" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; net use \\&lt;TARGET IP ADDRESS&gt;
+<pre><code>C:\&gt; net use \\&lt;TARGET IP ADDRESS&gt;
 C:\&gt; net share
 C:\&gt; net session
 C:\&gt; wmic volume list brief
 C:\&gt; wmic logicaldisk getdescription,filesystem,name,size
 C:\&gt; wmic share get name,path
-</pre></div>
+</code></pre>
 
 <h2 id="find-multiple-file-types-or-a-file">Find multiple file types or a file:<a class="headerlink" href="#find-multiple-file-types-or-a-file" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; dir /A /5 /T:A *,exe *,dll *,bat *·PS1 *,zip
+<pre><code>C:\&gt; dir /A /5 /T:A *,exe *,dll *,bat *·PS1 *,zip
 C:\&gt; dir /A /5 /T:A &lt;BAD FILE NAME&gt;,exe
-</pre></div>
+</code></pre>
 
 <h2 id="find-executable-exe-files-newer-than-jan-1-2017">Find executable (.exe) files newer than Jan 1, 2017:<a class="headerlink" href="#find-executable-exe-files-newer-than-jan-1-2017" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; forfiles /p C:\ /M *,exe /5 /0 +1/1/2017 /C&quot;cmd /c echo @fdate @ftime @path&quot;
-</pre></div>
+<pre><code>C:\&gt; forfiles /p C:\ /M *,exe /5 /0 +1/1/2017 /C&quot;cmd /c echo @fdate @ftime @path&quot;
+</code></pre>
 
 <h2 id="find-multiple-files-types-using-loop">Find multiple files types using loop:<a class="headerlink" href="#find-multiple-files-types-using-loop" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; for %G in (.exe, .dll, .bat, .ps) do forfiles -p &quot;C:&quot; -m *%G -s -d +1/1/2017 -c &quot;cmd /c echo @fdate@ftime @path&quot;
-</pre></div>
+<pre><code>C:\&gt; for %G in (.exe, .dll, .bat, .ps) do forfiles -p &quot;C:&quot; -m *%G -s -d +1/1/2017 -c &quot;cmd /c echo @fdate@ftime @path&quot;
+</code></pre>
 
 <h2 id="search-for-files-newer-than-date">Search for files newer than date:<a class="headerlink" href="#search-for-files-newer-than-date" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; forfiles /PC:\ /5 /0 +1/01/2017 /C &quot;cmd /c echo @path @fdate&quot;
-</pre></div>
+<pre><code>C:\&gt; forfiles /PC:\ /5 /0 +1/01/2017 /C &quot;cmd /c echo @path @fdate&quot;
+</code></pre>
 
 <h2 id="find-large-files-example-20-mb">Find large files: (example &lt;20 MB)<a class="headerlink" href="#find-large-files-example-20-mb" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; forfiles /5 /M * /C &quot;cmd /c if @fsize GEO 2097152 echo @path @fsize&quot;
-</pre></div>
+<pre><code>C:\&gt; forfiles /5 /M * /C &quot;cmd /c if @fsize GEO 2097152 echo @path @fsize&quot;
+</code></pre>
 
 <h2 id="find-files-with-alternate-data-streams">Find files with Alternate Data Streams:<a class="headerlink" href="#find-files-with-alternate-data-streams" title="Permanent link">&para;</a></h2>
-<p><img alt="Ref" src="https://technet.microsoft.com/enus/sysinternals/streams.aspx" />
-<div class="codehilite"><pre><span></span>C:\&gt; streams -s &lt;FILE OR DIRECTORY&gt;Find files with bad signature into csv:
-</pre></div>
-<img alt="Ref" src="https://technet.microsoft.com/enus/sysinternals/bb897441.aspx" />
-<div class="codehilite"><pre><span></span>C:\&gt; sigcheck -c -h -s -u -nobanner &lt;FILE OR DIRECTORY&gt; &gt; &lt;OUTPUT FILENAME&gt;,csv
-</pre></div></p>
+<p><a href="https://technet.microsoft.com/enus/sysinternals/streams.aspx">https://technet.microsoft.com/enus/sysinternals/streams.aspx</a></p>
+<pre><code>C:\&gt; streams -s &lt;FILE OR DIRECTORY&gt;Find files with bad signature into csv:
+</code></pre>
+
+<p><a href="https://technet.microsoft.com/enus/sysinternals/bb897441.aspx">https://technet.microsoft.com/enus/sysinternals/bb897441.aspx</a></p>
+<pre><code>C:\&gt; sigcheck -c -h -s -u -nobanner &lt;FILE OR DIRECTORY&gt; &gt; &lt;OUTPUT FILENAME&gt;,csv
+</code></pre>
+
 <h2 id="find-and-show-only-unsigned-files-with-bad-signature-in-c">Find and show only unsigned files with bad signature in C:<a class="headerlink" href="#find-and-show-only-unsigned-files-with-bad-signature-in-c" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>C:\&gt; sigcheck -e -u -vr -s C:\
-</pre></div>
+<pre><code>C:\&gt; sigcheck -e -u -vr -s C:\
+</code></pre>
 
 <h2 id="list-loaded-unsigned-dlls">List loaded unsigned Dlls:<a class="headerlink" href="#list-loaded-unsigned-dlls" title="Permanent link">&para;</a></h2>
-<p><img alt="Ref" src="https://technet.microsoft.com/enus/sysinternals/bb896656.aspx" />
-<div class="codehilite"><pre><span></span>C:\&gt; listdlls.exe -u
+<p><a href="https://technet.microsoft.com/enus/sysinternals/bb896656.aspx">https://technet.microsoft.com/enus/sysinternals/bb896656.aspx</a></p>
+<pre><code>C:\&gt; listdlls.exe -u
 C:\&gt; listdlls.exe -u &lt;PROCESS NAME OR PID&gt;
-</pre></div></p>
+</code></pre>
+
 <h2 id="run-malware-scan-windows-defender-offline">Run Malware scan (Windows Defender) offline:<a class="headerlink" href="#run-malware-scan-windows-defender-offline" title="Permanent link">&para;</a></h2>
-<p><img alt="Ref" src="http://windows.microsoft.com/enus/windows/what-is-windows-defender-offline" />
-<div class="codehilite"><pre><span></span>C:\&gt; MpCmdRun.exe -SignatureUpdate
+<p><a href="http://windows.microsoft.com/enus/windows/what-is-windows-defender-offline">http://windows.microsoft.com/enus/windows/what-is-windows-defender-offline</a></p>
+<pre><code>C:\&gt; MpCmdRun.exe -SignatureUpdate
 C:\&gt; MpCmdRun.exe -Scan
-</pre></div></p></div>
+</code></pre></div>
         </div>
 
         <footer class="col-md-12">

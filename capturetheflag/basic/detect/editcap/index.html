@@ -12,7 +12,7 @@
         <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/darcula.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/purebasic.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -584,12 +584,12 @@
                 <div class="col-md-9" role="main">
 
 <h2 id="use-to-edit-a-pcap-file-split-into-1000-packets">Use to edit a pcap file (split into 1000 packets):<a class="headerlink" href="#use-to-edit-a-pcap-file-split-into-1000-packets" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>editcap -F pcap -c 1000 orignal.pcap
-</pre></div>
+<pre><code>editcap -F pcap -c 1000 orignal.pcap
+</code></pre>
 
 <h2 id="out_splitpcap-use-to-edit-a-pcap-file-split-into-1-hour-each-packets">out_split,pcap Use to edit a pcap file (split into 1 hour each packets):<a class="headerlink" href="#out_splitpcap-use-to-edit-a-pcap-file-split-into-1-hour-each-packets" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>editcap -F pcap -t+3600 orignal.pcap out_split.pcap
-</pre></div></div>
+<pre><code>editcap -F pcap -t+3600 orignal.pcap out_split.pcap
+</code></pre></div>
         </div>
 
         <footer class="col-md-12">

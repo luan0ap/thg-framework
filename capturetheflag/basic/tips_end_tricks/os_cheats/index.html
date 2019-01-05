@@ -12,7 +12,7 @@
         <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/darcula.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/purebasic.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -641,24 +641,24 @@
 <p>C:> reg add \<REMOTE COMPUTERNAME>\HKLM\Software\<REG KEY INFO>Get registry value remotely:
 C:> reg query \<REMOTE COMPUTERNAME>\HKLM\Software\<REG KEY INFO></p>
 <h2 id="test-to-see-if-registry-path-exists">Test to see if Registry Path exists:<a class="headerlink" href="#test-to-see-if-registry-path-exists" title="Permanent link">&para;</a></h2>
-<p>PS C:> Test-Path "HKCU:\Software\Microsoft\<HIVE>"</p>
+<p>PS C:> Test-Path &ldquo;HKCU:\Software\Microsoft\<HIVE>&ldquo;</p>
 <h2 id="copy-files-remotely">Copy files remotely:<a class="headerlink" href="#copy-files-remotely" title="Permanent link">&para;</a></h2>
 <p>C:> robocopy C:\<SOURCE SHARED FOLDER>\<DESTINATION COMPUTER>\<DESTINATION FOLDER> /E</p>
 <h2 id="check-to-see-if-certain-file-extensions-are-in-adirectory">Check to see if certain file extensions are in adirectory:<a class="headerlink" href="#check-to-see-if-certain-file-extensions-are-in-adirectory" title="Permanent link">&para;</a></h2>
-<p>PS C:> Test-Path C:\Scripts\Archive* -include *·PSl, *,VbS</p>
+<p>PS C:> Test-Path C:\Scripts\Archive* -include <em>·PSl, </em>,VbS</p>
 <h2 id="show-contents-of-a-file">Show contents of a file:<a class="headerlink" href="#show-contents-of-a-file" title="Permanent link">&para;</a></h2>
 <p>C:> type <FILE NAME></p>
 <h2 id="combine-contents-of-multiple-files">Combine contents of multiple files:<a class="headerlink" href="#combine-contents-of-multiple-files" title="Permanent link">&para;</a></h2>
 <p>C:> type <FILE NAME 1> <FILE NAME 2> <FILE NAME 3>&gt; <NEW FILE NAME></p>
 <h2 id="desktops-allows-multiple-desktop-screens">Desktops, allows multiple Desktop Screens:<a class="headerlink" href="#desktops-allows-multiple-desktop-screens" title="Permanent link">&para;</a></h2>
-<p>Ref. <a href="https://technet.microsoft.com/enus/sysinternals/cc817881">https://technet.microsoft.com/enus/sysinternals/cc817881</a></p>
+<p>Ref. https://technet.microsoft.com/enus/sysinternals/cc817881</p>
 <h2 id="run-live-option">Run live option:<a class="headerlink" href="#run-live-option" title="Permanent link">&para;</a></h2>
-<p>C:> "%ProgramFiles%\Internet Explorer\iexplore.exe "<a href="https://live.sysinternals.com/desktops.exe">https://live.sysinternals.com/desktops.exe</a></p>
+<p>C:> &ldquo;%ProgramFiles%\Internet Explorer\iexplore.exe &ldquo;https://live.sysinternals.com/desktops.exe</p>
 <h2 id="remote-mounting-read-and-readwrite">Remote mounting, Read and Read/Write:<a class="headerlink" href="#remote-mounting-read-and-readwrite" title="Permanent link">&para;</a></h2>
 <p>C:> net share MyShare_R=c:\<READ ONLY FOLDER>/GRANT:EVERYONE,READ
 C:> net share MyShare_RW=c:\<READ/WRITE FOLDER>/GRANT:EVERYONE,FULL</p>
 <h2 id="remote-task-execution-using-psexec">Remote task execution using PSEXEC:<a class="headerlink" href="#remote-task-execution-using-psexec" title="Permanent link">&para;</a></h2>
-<p>Ref. <a href="https://technet.microsoft.com/enus/sysinternals/psexec.aspx">https://technet.microsoft.com/enus/sysinternals/psexec.aspx</a></p>
+<p>Ref. https://technet.microsoft.com/enus/sysinternals/psexec.aspx</p>
 <p>C:> psexec.exe \<TARGET IP ADDRESS> -u <USER NAME>-p <PASSWORD> /C C:\<PROGRAM>.exe
 C:> psexec @(:\<TARGET FILE LIST>.txt -u <ADMINLEVEL USER NAME> -p <PASSWORD> C:\<PROGRAM>,exe &gt;&gt;
 C:\<OUTPUT FILE NAME>,txt
@@ -674,11 +674,11 @@ C:\<PROGRAM>.exe</p>
 <p>PS C:> Get-Help <PS COMMAND> -full</p>
 <h1 id="linux">LINUX<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h1>
 <h2 id="analyze-traffic-remotely-over-ssh">Analyze traffic remotely over ssh:<a class="headerlink" href="#analyze-traffic-remotely-over-ssh" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span># ssh root@&lt;REMOTE IP ADDRESS OF HOST TO SNIFF&gt;tcpdump -i any -U -s 0 -w - &#39;not port 22&#39;
-</pre></div>
+<pre><code># ssh root@&lt;REMOTE IP ADDRESS OF HOST TO SNIFF&gt;tcpdump -i any -U -s 0 -w - 'not port 22'
+</code></pre>
 
 <h2 id="manually-add-notedata-to-syslog">Manually add note/data to syslog:<a class="headerlink" href="#manually-add-notedata-to-syslog" title="Permanent link">&para;</a></h2>
-<h1 id="logger-usomething-important-to-note-in-log">logger usomething important to note in Log"<a class="headerlink" href="#logger-usomething-important-to-note-in-log" title="Permanent link">&para;</a></h1>
+<h1 id="logger-usomething-important-to-note-in-log">logger usomething important to note in Log&rdquo;<a class="headerlink" href="#logger-usomething-important-to-note-in-log" title="Permanent link">&para;</a></h1>
 <h1 id="dmesg-i-grep">dmesg I grep <COMMENT><a class="headerlink" href="#dmesg-i-grep" title="Permanent link">&para;</a></h1>
 <h2 id="simple-read-only-mounting">Simple read only mounting:<a class="headerlink" href="#simple-read-only-mounting" title="Permanent link">&para;</a></h2>
 <h1 id="mount-o-ro-dev-mnt">mount -o ro /dev/<YOUR FOLDER OR DRIVE> /mnt<a class="headerlink" href="#mount-o-ro-dev-mnt" title="Permanent link">&para;</a></h1>

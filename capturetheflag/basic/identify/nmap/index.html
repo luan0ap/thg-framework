@@ -12,7 +12,7 @@
         <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/darcula.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/purebasic.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -590,28 +590,28 @@
 
 <h1 id="nmap">NMAP<a class="headerlink" href="#nmap" title="Permanent link">&para;</a></h1>
 <h1 id="ping-sweep-for-network">Ping sweep for network:<a class="headerlink" href="#ping-sweep-for-network" title="Permanent link">&para;</a></h1>
-<div class="codehilite"><pre><span></span>nmap -sn -PE &lt;IP ADDRESS OR RANGE&gt;
-</pre></div>
+<pre><code>nmap -sn -PE &lt;IP ADDRESS OR RANGE&gt;
+</code></pre>
 
 <h1 id="scan-and-show-open-ports">Scan and show open ports:<a class="headerlink" href="#scan-and-show-open-ports" title="Permanent link">&para;</a></h1>
-<div class="codehilite"><pre><span></span>nmap --open &lt;IP ADDRESS OR RANGE&gt;
-</pre></div>
+<pre><code>nmap --open &lt;IP ADDRESS OR RANGE&gt;
+</code></pre>
 
 <h1 id="determine-open-services">Determine open services:<a class="headerlink" href="#determine-open-services" title="Permanent link">&para;</a></h1>
-<div class="codehilite"><pre><span></span>nmap -sV &lt;IP ADDRESS&gt;
-</pre></div>
+<pre><code>nmap -sV &lt;IP ADDRESS&gt;
+</code></pre>
 
 <h1 id="scan-two-common-tcp-ports-http-and-https">Scan two common TCP ports, HTTP and HTTPS:<a class="headerlink" href="#scan-two-common-tcp-ports-http-and-https" title="Permanent link">&para;</a></h1>
-<div class="codehilite"><pre><span></span>nmap -p 80,443 &lt;IP ADDRESS OR RANGE&gt;
-</pre></div>
+<pre><code>nmap -p 80,443 &lt;IP ADDRESS OR RANGE&gt;
+</code></pre>
 
 <h1 id="scan-common-udp-port-dns">Scan common UDP port, DNS:<a class="headerlink" href="#scan-common-udp-port-dns" title="Permanent link">&para;</a></h1>
-<div class="codehilite"><pre><span></span>nmap -sU -p 53 &lt;IP ADDRESS OR RANGE&gt;
-</pre></div>
+<pre><code>nmap -sU -p 53 &lt;IP ADDRESS OR RANGE&gt;
+</code></pre>
 
 <h1 id="scan-udp-and-tcp-together-be-verbose-on-a-single-host-and-include-optional-skip-ping">Scan UDP and TCP together, be verbose on a single host and include optional skip ping:<a class="headerlink" href="#scan-udp-and-tcp-together-be-verbose-on-a-single-host-and-include-optional-skip-ping" title="Permanent link">&para;</a></h1>
-<div class="codehilite"><pre><span></span>nmap -v -Pn -SU -ST -p U:53,111,137,T:21-25,80,139,8080 &lt;IP ADDRESS&gt;
-</pre></div></div>
+<pre><code>nmap -v -Pn -SU -ST -p U:53,111,137,T:21-25,80,139,8080 &lt;IP ADDRESS&gt;
+</code></pre></div>
         </div>
 
         <footer class="col-md-12">

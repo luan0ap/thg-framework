@@ -12,7 +12,7 @@
         <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/darcula.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/purebasic.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -591,42 +591,42 @@
                 <div class="col-md-9" role="main">
 
 <h2 id="run-test-on-snort-config-file">Run test on snort config file:<a class="headerlink" href="#run-test-on-snort-config-file" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>snort -T -c /&lt;PATH TO SNORT&gt;/snort/snort.conf
-</pre></div>
+<pre><code>snort -T -c /&lt;PATH TO SNORT&gt;/snort/snort.conf
+</code></pre>
 
 <h2 id="use-snortvverboseddump-packet-payload">Use snort(v=verbose,d=dump packet payload):<a class="headerlink" href="#use-snortvverboseddump-packet-payload" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>snort -dv -r &lt;LOG FILE NAME&gt;, log
-</pre></div>
+<pre><code>snort -dv -r &lt;LOG FILE NAME&gt;, log
+</code></pre>
 
 <h2 id="replay-a-log-file-and-match-icmp-traffic">Replay a log file and match icmp traffic:<a class="headerlink" href="#replay-a-log-file-and-match-icmp-traffic" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>snort -dvr packet.log icmp
-</pre></div>
+<pre><code>snort -dvr packet.log icmp
+</code></pre>
 
 <h2 id="logs-in-ascii">Logs in ASCII:<a class="headerlink" href="#logs-in-ascii" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>snort -K ascii -l &lt;LOG DIRECTORY&gt;
-</pre></div>
+<pre><code>snort -K ascii -l &lt;LOG DIRECTORY&gt;
+</code></pre>
 
 <h2 id="logs-in-binary">Logs in binary:<a class="headerlink" href="#logs-in-binary" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>snort -l &lt;LOG DIRECTORY&gt;
-</pre></div>
+<pre><code>snort -l &lt;LOG DIRECTORY&gt;
+</code></pre>
 
 <h2 id="sent-events-to-console">Sent events to console:<a class="headerlink" href="#sent-events-to-console" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>snort -q -A console -i eth0 -c /etc/snort/snort.conf
+<pre><code>snort -q -A console -i eth0 -c /etc/snort/snort.conf
 snort -c snort.conf -l /tmp/so/console -A console
-</pre></div>
+</code></pre>
 
 <h1 id="create-a-single-snort-rule-and-save">Create a single snort rule and save:<a class="headerlink" href="#create-a-single-snort-rule-and-save" title="Permanent link">&para;</a></h1>
-<div class="codehilite"><pre><span></span>echo alert any any &lt;SNORT RULE&gt; &gt; one.rule
-</pre></div>
+<pre><code>echo alert any any &lt;SNORT RULE&gt; &gt; one.rule
+</code></pre>
 
 <h2 id="test-single-rule">Test single rule:<a class="headerlink" href="#test-single-rule" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>snort -T -c one.rule
-</pre></div>
+<pre><code>snort -T -c one.rule
+</code></pre>
 
 <h2 id="run-single-rule-and-output-to-console-and-logs-dir">Run single rule and output to console and logs dir:<a class="headerlink" href="#run-single-rule-and-output-to-console-and-logs-dir" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>mkdir ,/logs
+<pre><code>mkdir ,/logs
 snort -vd -c one.rule -r &lt;PCAP FILE NAME&gt;,pcap -A console -l logs
-</pre></div></div>
+</code></pre></div>
         </div>
 
         <footer class="col-md-12">
