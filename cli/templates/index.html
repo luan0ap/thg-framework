@@ -577,11 +577,825 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#criando-comandos">criando comandos</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-</div>
+<h1 id="criando-comandos">criando comandos<a class="headerlink" href="#criando-comandos" title="Permanent link">&para;</a></h1>
+<pre><code>1- abra o arquivo interpreter.py localizado no thgconsole/interpreter.py
+2- dentro da class THGtInterpreter(BaseInterpreter):
+3- localize as defs que tem command_{nome} 
+</code></pre>
+
+<pre><code class="python">
+ def command_del(self,args,**kwargs):
+        commandos = '''usage: dell [-h/--help] [--list] [file]
+optional arguments:
+  -h, --help   show help
+  --list       list files 
+''' # aqui fica os comentarios do seus argumentos
+        short_cm = '''[--list] list files \n[--help] show all info'''
+        if args == &quot;&quot;:
+            print(short_cm)
+        elif args == &quot;-h&quot;:
+            print(commandos)
+        elif args == &quot;--help&quot;:
+            print(commandos)
+        if os.path.isdir(args) == True:
+            print_success(&quot;del dir...[%s]&quot;.format(args))
+            shutil.rmtree(args)
+            print_success(&quot;dir deleted successfully =&gt; &quot;+(args))
+        elif args == &quot;list&quot;:
+            dir = os.getcwd()
+            directories = [d for d in os.listdir(os.getcwd()) if os.path.isdir(d)]
+            file = [d for d in os.listdir(os.getcwd()) if os.path.isfile(d)]
+            print_status(&quot;dir:: &quot; + dir)
+            print_status(&quot; FILE:&quot; + str(len(file)) + &quot; FOLDER:&quot; + str(len(directories)))
+            arquivos = []
+            pastas = []
+            for i in glob(&quot;*&quot;):
+                if os.path.isdir(i) == True:
+                    print(Fore.CYAN + i + Fore.LIGHTYELLOW_EX + &quot;/&quot;)
+
+                else:
+                    print(Fore.RED + i)
+
+        elif os.path.isfile(args) == True:
+            print_success(&quot;del file...[{}]&quot;.format(args))
+            os.remove(args)
+            print_success(&quot;file deleted successfully =&gt; &quot;+args)
+        elif os.path.islink(args)==True:
+            print_success(&quot;del link..[{}]&quot;.format(args))
+            import pathlib
+            pathlib.Path.unlink(args)
+            print_success(&quot;link deleted successfully =&gt; &quot;+args)
+            del pathlib
+
+
+</code></pre>
+
+<pre><code>1 - saida
+
+PWN &gt; del
+[--list] list files 
+[--help] show all info
+PWN &gt; 
+</code></pre>
+
+<pre><code>2 - saida
+
+PWN &gt; del -h 
+usage: dell [-h/--help] [--list] [file]
+optional arguments:
+  -h, --help   show help
+  --list       list files 
+
+PWN &gt; 
+</code></pre>
+
+<pre><code>3- saida
+
+PWN &gt; del --help
+usage: dell [-h/--help] [--list] [file]
+optional arguments:
+  -h, --help   show help
+  --list       list files 
+
+PWN &gt; 
+
+</code></pre>
+
+<pre><code>class THGtInterpreter(BaseInterpreter):
+    history_file = os.path.expanduser(&quot;~/.THG_history&quot;)
+    global_help = &quot;&quot;&quot;
+\033[0;32mGlobal commands:
+
+#Alias Commands
+==============
+
+Command       Description
+-------       -----------
+#alias         create or view an alias.
+#del           rm
+#handler       use exploit/multi/handler
+
+Core Commands
+=============
+
+    Command       Description
+    -------       -----------
+    show banner    Display an awesome thgbanner
+    show Ip        show internal ip 
+    exit           Exit the console
+    unsetg         Unsets one or more global variables
+    help           Help menu
+    show history   Show command history
+    setg           Sets a global variable to a value
+    set            Sets a context-specific variable to a value
+    exec           &lt;shell command&gt; &lt;args&gt; Execute a command in a shell
+    cd             Change the current working directory
+    color          Toggle color
+    route          Route traffic through a session V-1base
+    show version   Show the framework and console library version numbers
+    quit           Exit the console
+    #connect       Communicate with a host
+    #grep          Grep the output of another command
+    #load          Load a framework plugin
+    #save          Saves the active datastores
+    #sessions      Dump session listings and display information about sessions
+    sleep         Do nothing for the specified number of seconds
+    #spool         Write console output into a file as well the screen
+    #unload        Unload a framework plugin
+
+
+
+#Module Commands
+===============
+
+    #Command        Description
+    -------        -----------
+    show all       show all modules {red}-&gt;{magent} (@sys_module){Blue}{grn}{grn}
+    show creds     show creds in db {red}-&gt;{Blue} (@module_required){Blue}{grn}{grn}
+    show devices   show devices modules {red}-&gt;{Blue} (@module_required){Blue}{grn}{grn}
+    show encoders  show encoders for module {red}-&gt;{Blue} (@module_required){Blue}{grn}{grn}
+    show exploits  show exploit modules {red}-&gt;{magent} (@sys_module){Blue}{grn}{grn}   
+    show auxiliary show auxiliary modules {red}-&gt;{magent} (@sys_module){Blue}{grn}{grn}
+    show nops      show nops modules {red}-&gt;{magent} (@sys_module){Blue}{grn}{grn}
+    show payloads  show payload modules {red}-&gt;{magent} (@sys_module){Blue}{grn}{grn}
+    show post      show post modules {red}-&gt;{magent} (@sys_module){Blue}{grn}{grn}
+    show info      show info modules {red}-&gt;{Blue} (@module_required){Blue}{grn}{grn}
+    show options   show options in the modules {red}-&gt;{Blue} (@module_required){Blue}{grn}{grn}
+    show wordlists show wordlist in thgconsole date {red}-&gt;{Blue} (@module_required){Blue}{grn}{grn}
+    show threads   View and manipulate background threads {red}-&gt;{Blue} (@module_required){Blue}{grn}{grn}
+    #advanced      Displays advanced options for one or more modules {red}-&gt;{magent} (@sys_module){Blue}{grn}{grn}
+    back           Move back from the current context {red}-&gt;{magent} (@sys_module){Blue}{grn}{grn}
+    show info      Displays information about one or more modules
+    #loadpath      Searches for and loads modules from a path {red}-&gt;{magent} (@sys_module){Blue}{grn}{grn}
+    options        Displays global options or for one or more modules
+    #popm          Pops the latest module off the stack and makes it active {red}-&gt;{magent} (@sys_module){Blue}{grn}{grn}
+    #previous      Sets the previously loaded module as the current module {red}-&gt;{magent} (@sys_module){Blue}{grn}{grn}
+    #pushm         Pushes the active or list of modules onto the module stack {red}-&gt;{magent} (@sys_module){Blue}{grn}{grn}
+    #reload_all    Reloads all modules from all defined module paths {red}-&gt;{magent} (@sys_module){Blue}{grn}{grn}
+    search         Searches module names and descriptions {red}-&gt;{magent} (@sys_module){Blue}{grn}{grn}
+    show           Displays modules of a given type, or all modules {red}-&gt;{magent} (@sys_module){Blue}{grn}{grn}
+    use            Selects a module by name {red}-&gt;{magent} (@sys_module){Blue}{grn}{grn}
+
+
+#Job Commands
+============
+
+#Command       Description
+-------       -----------
+#handler       Start a payload handler as job
+#jobs          Displays and manages jobs
+#kill          Kill a job
+#rename_job    Rename a job
+
+
+#Resource Script Commands
+========================
+
+#Command       Description
+-------       -----------
+#makerc        Save commands entered since start to a file
+#resource      Run the commands stored in a file
+
+#Developer Commands
+==================
+
+#Command       Description
+-------       -----------
+#edit               Edit the current module or a file with the preferred editor
+python_interpreter  Drop into python  scripting mode
+log                 Displays framework.log starting at the bottom if possible
+#reload_lib         Reload one or more library files from specified paths
+
+#Database Backend Commands
+=========================
+
+#Command           Description
+-------           -----------
+#db_connect        Connect to an existing database
+#db_disconnect     Disconnect from the current database instance
+#db_export         Export a file containing the contents of the database
+#db_import         Import a scan result file (filetype will be auto-detected)
+#db_nmap           Executes nmap and records the output automatically
+#db_rebuild_cache  Rebuilds the database-stored module cache
+#db_status         Show the current database status
+#hosts             List all hosts in the database
+#loot              List all loot in the database
+#notes             List all notes in the database
+#services          List all services in the database
+#vulns             List all vulnerabilities in the database
+#workspace         Switch between database workspaces
+
+
+Credentials Backend Commands
+============================
+
+Command       Description
+-------       -----------
+#creds         List all credentials in the database
+    &quot;&quot;&quot;.format(Blue=Fore.CYAN, grn=Fore.GREEN, red=Fore.RED, yl=Fore.YELLOW, magent=Fore.MAGENTA)
+
+    module_help = &quot;&quot;&quot;
+    \033[1;34mModule commands:
+    run                                 Run the selected module with the given options
+    back                                De-select the current module
+    set &lt;option name&gt; &lt;option value&gt;    Set an option for the selected module
+    setg &lt;option name&gt; &lt;option value&gt;   Set an option for all of the modules
+    unsetg &lt;option name&gt;                Unset option that was set globally
+    show [info|options|devices]         Print information, options, or target devices for a module
+    check                               Check if a given target is vulnerable to a selected module's exploit&quot;&quot;&quot;
+
+    def __init__(self, extra_package_path=None):
+        super(THGtInterpreter, self).__init__()
+        PrinterThread().start()
+
+        self.current_module = None
+        self.raw_prompt_template = None
+        self.module_prompt_template = None
+        self.prompt_hostname = &quot;\033[0;32mPWN&quot;
+        self.show_sub_commands = sorted((&quot;info&quot;,
+                                         &quot;ip&quot;,
+                                         &quot;history&quot;,
+                                         &quot;options&quot;,
+                                         &quot;devices&quot;,
+                                         &quot;all&quot;,
+                                         &quot;encoders&quot;,
+                                         &quot;creds&quot;,
+                                         &quot;exploits&quot;,
+                                         &quot;scanners&quot;,  # mudar explit e tall
+                                         &quot;wordlists&quot;,
+                                         &quot;banner&quot;,
+                                         &quot;version&quot;
+                                         ))
+
+        self.global_commands = sorted([&quot;use&quot;,
+                                       &quot;exec&quot;,
+                                       &quot;help&quot;,
+                                       &quot;exit&quot;,
+                                       &quot;show&quot;,
+                                       &quot;del&quot;,
+                                       &quot;search&quot;,
+                                       &quot;python_interpreter&quot;,
+                                       &quot;shell&quot;,
+                                       &quot;cd&quot;,
+                                       &quot;color&quot;,
+                                       &quot;route&quot;,
+                                       &quot;quit&quot;,
+                                       &quot;sleep&quot;
+
+                                       ])
+        self.module_commands = [&quot;run&quot;, &quot;back&quot;, &quot;set &quot;, &quot;setg &quot;, &quot;check&quot;]
+        self.module_commands.extend(self.global_commands)
+        self.module_commands.sort()
+        self.extra_modules_dir = None
+        self.extra_modules_dirs = None
+        self.extra_modules = []
+        self.extra_package_path = extra_package_path
+        self.import_extra_package()
+        self.modules = index_modules()
+        self.modules += self.extra_modules
+        self.modules_count = Counter()
+        self.modules_count.update([module.split('.')[0] for module in self.modules])
+        self.main_modules_dirs = [module for module in os.listdir(MODULES_DIR) if not module.startswith(&quot;__&quot;)]
+
+        self.__parse_prompt()
+        self.ran = &quot;&quot;&quot;
+          \033[1;31m████████╗██╗  ██╗███████╗    ██╗  ██╗ █████╗  ██████╗██╗  ██╗███████╗██████╗      ██████╗ ██████╗  ██████╗ ██╗   ██╗██████╗ 
+        ╚══██╔══╝██║  ██║██╔════╝    ██║  ██║██╔══██╗██╔════╝██║ ██╔╝██╔════╝██╔══██╗    ██╔════╝ ██╔══██╗██╔═══██╗██║   ██║██╔══██╗
+           ██║   ███████║█████╗      ███████║███████║██║     █████╔╝ █████╗  ██████╔╝    ██║  ███╗██████╔╝██║   ██║██║   ██║██████╔╝
+           ██║   ██╔══██║██╔══╝      ██╔══██║██╔══██║██║     ██╔═██╗ ██╔══╝  ██╔══██╗    ██║   ██║██╔══██╗██║   ██║██║   ██║██╔═══╝ 
+           ██║   ██║  ██║███████╗    ██║  ██║██║  ██║╚██████╗██║  ██╗███████╗██║  ██║    ╚██████╔╝██║  ██║╚██████╔╝╚██████╔╝██║     
+           ╚═╝   ╚═╝  ╚═╝╚══════╝    ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝     ╚═════╝ ╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝     
+        \033[1;34m                         
+
+        &quot;&quot;&quot;
+        self.banner = &quot;&quot;&quot;
+{CYAN}==================={GREEN}[ thgconsole {version} ]{GREEN}{CYAN}===================
+
+{YELLOW}+ -- --=[{RED}THGEF   :{MAGENTA} The Hacker Group Exploitation Framework{RED}{YELLOW}]=-- -- +    
+{YELLOW}+ -- --=[{RED}Code by :{MAGENTA} Darkcode                               {RED}{YELLOW}]=-- -- + 
+{YELLOW}+ -- --=[{RED}Codename:{MAGENTA} {codenome}                                {RED}{YELLOW}]=-- -- + 
+{YELLOW}+ -- --=[{RED}Homepage:{MAGENTA} https://www.facebook.com/darckode0x00/ {RED}{YELLOW}]=-- -- + 
+{YELLOW}+ -- --=[{RED}youtube :{MAGENTA} darkcode programming                   {RED}{YELLOW}]=-- -- + 
+
+{CYAN}==================={GREEN}[ thgconsole-pc ]{GREEN}{CYAN}========================
+
+{YELLOW}+ -- --=[{RED}system  =&gt;{MAGENTA} {os}             {RED}{YELLOW}]=-- -- + 
+{YELLOW}+ -- --=[{RED}machine =&gt;{MAGENTA} {machine}            {RED}{YELLOW}]=-- -- +      
+{YELLOW}+ -- --=[{RED}gcc     =&gt;{MAGENTA} {gccv}             {RED}{YELLOW}]=-- -- +
+{YELLOW}+ -- --=[{RED}python  =&gt;{MAGENTA} {python}               {RED}{YELLOW}]=-- -- +
+{YELLOW}+ -- --=[{RED}net     =&gt;{MAGENTA} {net}        {RED}{YELLOW}]=-- -- +
+{YELLOW}+ -- --=[{RED}ip      =&gt;{MAGENTA} {ip}       {RED}{YELLOW}]=-- -- +
+{YELLOW}+ -- --=[{RED}mac     =&gt;{MAGENTA} {mac} {RED}{YELLOW}]=-- -- +
+
+{CYAN}==================={GREEN}[ thgconsole-info ]{GREEN}{CYAN}========================
+
+{YELLOW}+ -- --=[{RED}Exploits {MAGENTA} {exploits_count}  {RED}{YELLOW}]=-- -- +  
+{YELLOW}+ -- --=[{RED}Auxiliary{MAGENTA} {auxiliary_count} {RED}{YELLOW}]=-- -- + 
+{YELLOW}+ -- --=[{RED}Post     {MAGENTA} {post_count}      {RED}{YELLOW}]=-- -- + 
+{YELLOW}+ -- --=[{RED}Payloads {MAGENTA} {payloads_count}  {RED}{YELLOW}]=-- -- + 
+{YELLOW}+ -- --=[{RED}Encoders {MAGENTA} {encoders_count}  {RED}{YELLOW}]=-- -- + 
+{YELLOW}+ -- --=[{RED}Nops     {MAGENTA} {nops_count}      {RED}{YELLOW}]=-- -- + 
+
+{CYAN}==================={GREEN}[ thgconsole-config ]{GREEN}{CYAN}========================
+{YELLOW}+ -- --=[{RED}DB_STATUS =&gt;{MAGENTA}  {RED}{YELLOW}]=-- -- +
+
+        &quot;&quot;&quot;.format(os=platform.uname()[0],
+                   release=platform.uname()[2],
+                   versao=platform.uname()[3],
+                   machine=platform.uname()[4],
+                   processor=platform.uname()[5],
+                   hostname=platform.uname()[1],
+                   exploits_count=self.modules_count[&quot;exploits&quot;] + self.modules_count['extra_exploits'],
+                   encoders_count=self.modules_count[&quot;encoders&quot;] + self.modules_count['extra_encoders'],
+                   auxiliary_count=self.modules_count[&quot;auxiliary&quot;] + self.modules_count['extra_auxiliary'],
+                   nops_count=self.modules_count[&quot;nops&quot;] + self.modules_count['extra_nops'],
+                   payloads_count=self.modules_count[&quot;payloads&quot;] + self.modules_count['extra_payloads'],
+                   post_count=self.modules_count[&quot;post&quot;] + self.modules_count['extra_post'],
+                   codenome=__codenome__,
+                   version=__version__,
+                   CYAN=Fore.CYAN,
+                   GREEN=Fore.GREEN,
+                   RED=Fore.RED,
+                   YELLOW=Fore.YELLOW,
+                   MAGENTA=Fore.MAGENTA,
+                   gccv=thg_add_init.check_gcc_version(),
+                   python=thg_add_init.check_python_version(),
+                   net=thg_add_init.is_connected(),
+                   ip=thg_add_init.ipi(),
+                   mac=thg_add_init.get_mac())
+
+    def ipi(self, darkcde):
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect((&quot;8.8.8.8&quot;, 80))
+        a = s.getsockname()[0]
+        return a
+
+    def __parse_prompt(self):
+        raw_prompt_default_template = &quot;\001\033[4m\002{host}\001\033[0m\002 &gt; &quot;
+        raw_prompt_template = os.getenv(&quot;THG_RAW_PROMPT&quot;, raw_prompt_default_template).replace('\\033', '\033')
+        self.raw_prompt_template = raw_prompt_template if '{host}' in raw_prompt_template else raw_prompt_default_template
+
+        module_prompt_default_template = &quot;\001\033[4m\002{host}\001\033[0m\002 (\001\033[91m\002{module}\001\033[0m\002) &gt; &quot;
+        module_prompt_template = os.getenv(&quot;THG_MODULE_PROMPT&quot;, module_prompt_default_template).replace('\\033', '\033')
+        self.module_prompt_template = module_prompt_template if all(
+            map(lambda x: x in module_prompt_template, ['{host}', &quot;{module}&quot;])) else module_prompt_default_template
+
+    def __handle_if_noninteractive(self, argv):
+        noninteractive = False
+        module = &quot;&quot;
+        set_opts = []
+
+        try:
+            opts, args = getopt.getopt(argv, &quot;hxm:s:&quot;, [&quot;module=&quot;, &quot;set=&quot;])
+        except getopt.GetoptError:
+            print_info(&quot;{} -m &lt;module&gt; -s \&quot;&lt;option&gt; &lt;value&gt;\&quot;&quot;.format(sys.argv[0]))
+            sys.exit(2)
+
+        for opt, arg in opts:
+            if opt == &quot;-h&quot;:
+                print_info(&quot;{} -x -m &lt;module&gt; -s \&quot;&lt;option&gt; &lt;value&gt;\&quot;&quot;.format(sys.argv[0]))
+                sys.exit(0)
+            elif opt == &quot;-x&quot;:
+                noninteractive = True
+            elif opt in (&quot;-m&quot;, &quot;--module&quot;):
+                module = arg
+            elif opt in (&quot;-s&quot;, &quot;--set&quot;):
+                set_opts.append(arg)
+
+        if noninteractive:
+            self.command_use(module)
+
+            for opt in set_opts:
+                self.command_set(opt)
+
+            self.command_exploit()
+
+            sys.exit(0)
+
+    @property
+    def module_metadata(self):
+        return getattr(self.current_module, &quot;_{}__info__&quot;.format(self.current_module.__class__.__name__))
+
+    @property
+    def prompt(self):
+        &quot;&quot;&quot; Returns prompt string based on current_module attribute.
+
+        Adding module prefix (module.name) if current_module attribute is set.
+
+        :return: prompt string with appropriate module prefix.
+        &quot;&quot;&quot;
+        if self.current_module:
+            try:
+                return self.module_prompt_template.format(host=self.prompt_hostname,
+                                                          module=self.module_metadata['name'])
+            except (AttributeError, KeyError):
+                return self.module_prompt_template.format(host=self.prompt_hostname, module=&quot;UnnamedModule&quot;)
+        else:
+            return self.raw_prompt_template.format(host=self.prompt_hostname)
+
+    def import_extra_package(self):
+        if self.extra_package_path:
+            extra_modules_dir = os.path.join(self.extra_package_path, &quot;thg_extra_modules&quot;)
+            if os.path.isdir(extra_modules_dir):
+                self.extra_modules_dir = extra_modules_dir
+                self.extra_modules_dirs = [module for module in os.listdir(self.extra_modules_dir) if
+                                           not module.startswith(&quot;__&quot;)]
+                self.extra_modules = index_extra_modules(modules_directory=self.extra_modules_dir)
+                print(&quot;extra_modules_dir:%s&quot; % self.extra_modules_dir)
+                sys.path.append(self.extra_package_path)
+                sys.path.append(self.extra_modules_dir)
+        else:
+            return
+
+    def available_modules_completion(self, text):
+        &quot;&quot;&quot; Looking for tab completion hints using setup.py entry_points.
+
+        May need optimization in the future!
+
+        :param text: argument of 'use' command
+        :return: list of tab completion hints
+        &quot;&quot;&quot;
+        text = pythonize_path(text)
+        all_possible_matches = filter(lambda x: x.startswith(text), self.modules)
+        matches = set()
+        for match in all_possible_matches:
+            head, sep, tail = match[len(text):].partition('.')
+            if not tail:
+                sep = &quot;&quot;
+            matches.add(&quot;&quot;.join((text, head, sep)))
+        return list(map(humanize_path, matches))  # humanize output, replace dots to forward slashes
+
+    def suggested_commands(self):
+        &quot;&quot;&quot; Entry point for intelligent tab completion.
+
+        Based on state of interpreter this method will return intelligent suggestions.
+
+        :return: list of most accurate command suggestions
+        &quot;&quot;&quot;
+        if self.current_module and GLOBAL_OPTS:
+            return sorted(itertools.chain(self.module_commands, (&quot;unsetg &quot;,)))
+        elif self.current_module:
+            return self.module_commands
+        else:
+            return self.global_commands
+
+    def command_back(self, *args, **kwargs):
+        self.current_module = None
+
+    def command_use(self, module_path, *args, **kwargs):
+        if module_path.startswith(&quot;extra_&quot;):
+            module_path = pythonize_path(module_path)
+        else:
+            module_path = pythonize_path(module_path)
+            module_path = &quot;.&quot;.join((&quot;thgconsole&quot;, &quot;modules&quot;, module_path))
+        # module_path, _, exploit_name = module_path.rpartition('.')
+        try:
+            self.current_module = import_exploit(module_path)()
+        except THGtException as err:
+            print_error(str(err))
+
+    @stop_after(2)
+    def complete_use(self, text, *args, **kwargs):
+        if text:
+            return self.available_modules_completion(text)
+        else:
+            if self.extra_modules_dirs:
+                return self.main_modules_dirs + self.extra_modules_dirs
+            else:
+                return self.main_modules_dirs
+
+    @module_required
+    def command_run(self, *args, **kwargs):
+        print_status(&quot;Running module...&quot;)
+        try:
+            self.current_module.run()
+        except KeyboardInterrupt:
+            print_info()
+            print_error(&quot;Operation cancelled by user&quot;)
+        except Exception:
+            print_error(traceback.format_exc(sys.exc_info()))
+
+    def command_exploit(self, *args, **kwargs):
+        self.command_run()
+
+    @module_required
+    def command_set(self, *args, **kwargs):
+        key, _, value = args[0].partition(&quot; &quot;)
+        if key in self.current_module.options:
+            setattr(self.current_module, key, value)
+            self.current_module.exploit_attributes[key][0] = value
+
+            if kwargs.get(&quot;glob&quot;, False):
+                GLOBAL_OPTS[key] = value
+            print_success(&quot;{} =&gt; {}&quot;.format(key, value))
+        else:
+            print_error(&quot;You can't set option '{}'.\n&quot;
+                        &quot;Available options: {}&quot;.format(key, self.current_module.options))
+
+    @stop_after(2)
+    def complete_set(self, text, *args, **kwargs):
+        if text:
+            return [&quot; &quot;.join((attr, &quot;&quot;)) for attr in self.current_module.options if attr.startswith(text)]
+        else:
+            return self.current_module.options
+
+    @module_required
+    def command_setg(self, *args, **kwargs):
+        kwargs['glob'] = True
+        self.command_set(*args, **kwargs)
+
+    @stop_after(2)
+    def complete_setg(self, text, *args, **kwargs):
+        return self.complete_set(text, *args, **kwargs)
+
+    @module_required
+    def command_unsetg(self, *args, **kwargs):
+        key, _, value = args[0].partition(' ')
+        try:
+            del GLOBAL_OPTS[key]
+        except KeyError:
+            print_error(&quot;You can't unset global option '{}'.\n&quot;
+                        &quot;Available global options: {}&quot;.format(key, list(GLOBAL_OPTS.keys())))
+        else:
+            print_success({key: value})
+
+    @stop_after(2)
+    def complete_unsetg(self, text, *args, **kwargs):
+        if text:
+            return [' '.join((attr, &quot;&quot;)) for attr in GLOBAL_OPTS.keys() if attr.startswith(text)]
+        else:
+            return list(GLOBAL_OPTS.keys())
+
+    @module_required
+    def get_opts(self, *args):
+        &quot;&quot;&quot; Generator returning module's Option attributes (option_name, option_value, option_description)
+
+        :param args: Option names
+        :return:
+        &quot;&quot;&quot;
+        for opt_key in args:
+            try:
+                opt_description = self.current_module.exploit_attributes[opt_key][1]
+                opt_display_value = self.current_module.exploit_attributes[opt_key][0]
+            except (KeyError, AttributeError):
+                pass
+            else:
+                yield opt_key, opt_display_value, opt_description
+
+    @module_required
+    def _show_info(self, *args, **kwargs):
+        pprint_dict_in_order(
+            self.module_metadata,
+            (&quot;name&quot;, &quot;description&quot;, &quot;devices&quot;, &quot;authors&quot;, &quot;references&quot;,&quot;rank&quot;),
+        )
+        print_info()
+
+    @module_required
+    def _show_options(self, *args, **kwargs):
+        target_names = [&quot;target&quot;, &quot;port&quot;, &quot;ssl&quot;, &quot;rhost&quot;, &quot;rport&quot;, &quot;lhost&quot;, &quot;lport&quot;]
+        target_opts = [opt for opt in self.current_module.options if opt in target_names]
+        module_opts = [opt for opt in self.current_module.options if opt not in target_opts]
+        headers = (&quot;Name&quot;, &quot;Current settings&quot;, &quot;Description&quot;)
+
+        print_info(&quot;\nTarget options:&quot;)
+        print_table(headers, *self.get_opts(*target_opts))
+
+        if module_opts:
+            print_info(&quot;\nModule options:&quot;)
+            print_table(headers, *self.get_opts(*module_opts))
+
+        print_info()
+
+    @module_required
+    def _show_devices(self, *args, **kwargs):  # TODO: cover with tests
+        try:
+            devices = self.current_module._Exploit__info__['devices']
+
+            print_info(&quot;\nTarget devices:&quot;)
+            i = 0
+            for device in devices:
+                if isinstance(device, dict):
+                    print_info(&quot;   {} - {}&quot;.format(i, device['name']))
+                else:
+                    print_info(&quot;   {} - {}&quot;.format(i, device))
+                i += 1
+            print_info()
+        except KeyError:
+            print_info(&quot;\nTarget devices are not defined&quot;)
+
+    @module_required
+    def _show_wordlists(self, *args, **kwargs):
+        headers = (&quot;Wordlist&quot;, &quot;Path&quot;)
+        wordlists = [(f, &quot;file://{}/{}&quot;.format(WORDLISTS_DIR, f)) for f in os.listdir(WORDLISTS_DIR) if
+                     f.endswith(&quot;.txt&quot;)]
+        listw = str(len(wordlists))
+        print_table(headers, *wordlists, max_column_length=9000)
+
+    @module_required
+    def _show_encoders(self, *args, **kwargs):
+        if issubclass(self.current_module.__class__, BasePayload):
+            encoders = self.current_module.get_encoders()
+            if encoders:
+                headers = (&quot;Encoder&quot;, &quot;Name&quot;, &quot;Description&quot;)
+                print_table(headers, *encoders, max_column_length=9000)
+                return
+
+        print_error(&quot;No encoders available&quot;)
+
+    def __show_modules(self, root=''):
+        for module in [module for module in self.modules if module.startswith(root)]:
+            print_info(module.replace('.', os.sep))
+
+    def _show_all(self, *args, **kwargs):
+        self.__show_modules()
+
+    def _show_scanners(self, *args, **kwargs):
+        self.__show_modules('scanners')
+
+    def _show_test(self, *args, **kwargs):
+        self.__show_modules('test')
+
+    def _show_exploits(self, *args, **kwargs):
+        self.__show_modules('exploits')
+
+    def _show_payloads(self, *args, **kwargs):
+        self.__show_modules('payloads')
+
+    def _show_creds(self, *args, **kwargs):
+        self.__show_modules('creds')
+
+    def _show_banner(self, *args, **kwargs):
+        os.system(&quot;clear&quot;)
+        print(self.banner)
+
+    def _show_version(self, *args, **kwargs):
+        print_status(__codenome__ + &quot;-&quot; + __version__)
+
+    def _show_ip(self, *args, **kwargs):
+        print(self.ipi(darkcde=None))
+
+    # def _show_Eip(self,*args,**kwargs):
+    # print(ipgetter.myip())
+    def _show_history(self, *args, **kwargs):
+        os.system(&quot;cat ~/.THG_history&quot;)
+
+    def command_show(self, *args, **kwargs):
+        sub_command = args[0]
+        try:
+            getattr(self, &quot;_show_{}&quot;.format(sub_command))(*args, **kwargs)
+        except AttributeError:
+            print_error(&quot;Unknown 'show' sub-command '{}'. &quot;
+                        &quot;What do you want to show?\n&quot;
+                        &quot;Possible choices are: {}&quot;.format(sub_command, self.show_sub_commands))
+
+    @stop_after(2)
+    def complete_show(self, text, *args, **kwargs):
+        if text:
+            return [command for command in self.show_sub_commands if command.startswith(text)]
+        else:
+            return self.show_sub_commands
+
+    @module_required
+    def command_check(self, *args, **kwargs):
+        try:
+            result = self.current_module.check()
+        except Exception as error:
+            print_error(error)
+        else:
+            if result is True:
+                print_success(&quot;Target is vulnerable&quot;)
+            elif result is False:
+                print_error(&quot;Target is not vulnerable&quot;)
+            else:
+                print_status(&quot;Target could not be verified&quot;)
+
+    def command_sleep(self, args, **kwargs):
+        print_success(&quot;sleep &quot; + str(args))
+        sleep(float(args))
+
+    def command_help(self, *args, **kwargs):
+        print_info(self.global_help)
+        if self.current_module:
+            print_info(&quot;\n&quot;, self.module_help)
+
+    def command_log(self, *args, **kwargs):
+        os.system(&quot;cat thgconsole.log&quot;)
+
+    def command_tcp(self, *args, **kwargs):
+        pass
+
+
+    def command_del(self,args,**kwargs):
+        commandos = '''usage: dell [-h/--help] [--list] [file]
+optional arguments:
+  -h, --help   show help
+  --list       list files 
+'''
+        short_cm = '''[--list] list files \n[--help] show all info'''
+        if args == &quot;&quot;:
+            print(short_cm)
+        elif args == &quot;-h&quot;:
+            print(commandos)
+        elif args == &quot;--help&quot;:
+            print(commandos)
+        if os.path.isdir(args) == True:
+            print_success(&quot;del dir...[%s]&quot;.format(args))
+            shutil.rmtree(args)
+            print_success(&quot;dir deleted successfully =&gt; &quot;+(args))
+        elif args == &quot;list&quot;:
+            dir = os.getcwd()
+            directories = [d for d in os.listdir(os.getcwd()) if os.path.isdir(d)]
+            file = [d for d in os.listdir(os.getcwd()) if os.path.isfile(d)]
+            print_status(&quot;dir:: &quot; + dir)
+            print_status(&quot; FILE:&quot; + str(len(file)) + &quot; FOLDER:&quot; + str(len(directories)))
+            arquivos = []
+            pastas = []
+            for i in glob(&quot;*&quot;):
+                if os.path.isdir(i) == True:
+                    print(Fore.CYAN + i + Fore.LIGHTYELLOW_EX + &quot;/&quot;)
+
+                else:
+                    print(Fore.RED + i)
+
+        elif os.path.isfile(args) == True:
+            print_success(&quot;del file...[{}]&quot;.format(args))
+            os.remove(args)
+            print_success(&quot;file deleted successfully =&gt; &quot;+args)
+        elif os.path.islink(args)==True:
+            print_success(&quot;del link..[{}]&quot;.format(args))
+            import pathlib
+            pathlib.Path.unlink(args)
+            print_success(&quot;link deleted successfully =&gt; &quot;+args)
+            del pathlib
+
+    def command_exec(self, *args, **kwargs):
+        os.system(args[0])
+
+    def command_shell(self, *args, **kwargs):
+        os.system(&quot;bash&quot;)
+
+    def command_color(self, args, **kwargs):
+        self.prompt_hostname = args
+
+    def command_python_interpreter(self, *args, **kwargs):
+        os.system(&quot;python3&quot;)
+
+    def command_route(self, args, **kwargs):
+        os.system(&quot;route &quot; + args)
+
+    def command_cd(self, *args, **kwargs):
+        dir = os.getcwd()
+        try:
+            heck = os.path.exists(args[0])
+
+            total = glob(args[0] + &quot;/*&quot;)
+            print_status(&quot;current: &quot; + dir)
+            if args[0] == &quot;&quot;:
+                pass
+            else:
+                changer_dir = os.chdir(args[0])
+                dir = os.getcwd()
+                directories = [d for d in os.listdir(os.getcwd()) if os.path.isdir(d)]
+                file = [d for d in os.listdir(os.getcwd()) if os.path.isfile(d)]
+                print_status(&quot;change: &quot; + dir)
+                print_status(&quot;total:&quot; + str(len(total)) + &quot; FILE:&quot; + str(len(file)) + &quot; FOLDER:&quot; + str(len(directories)))
+                arquivos = []
+                pastas = []
+                for i in glob(&quot;*&quot;):
+                    if os.path.isdir(i) == True:
+                        print(Fore.CYAN + i + Fore.LIGHTYELLOW_EX + &quot;/&quot;)
+
+                    else:
+                        print(Fore.RED + i)
+        except:
+            pass
+
+    def command_quit(self, *args, **kwargs):
+        print_status(&quot;thgconsole stopped&quot;)
+        exit(1)
+
+    def command_search(self, *args, **kwargs):
+        keyword = args[0]
+
+        if not keyword:
+            print_error(&quot;Please specify search keyword. e.g. 'search pwn'&quot;)
+            return
+
+        for module in self.modules:
+            if keyword in module:
+                module = humanize_path(module)
+                print_info(
+                    &quot;{}\033[31m{}\033[0m{}&quot;.format(*module.partition(keyword))
+                )
+
+    def command_exit(self, *args, **kwargs):
+        raise EOFError
+</code></pre></div>
         </div>
 
         <footer class="col-md-12">
